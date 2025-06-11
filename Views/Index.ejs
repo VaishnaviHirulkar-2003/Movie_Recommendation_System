@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./Css/Index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+        <div class="container">
+                <div class="form">
+            <% if (status === "login") { %>
+    <h3 class="sign-text">Sign In</h3>
+    <form name="frm" action="" method="post">
+        <input type="text" name="username" value="" placeholder="Enter your User Name">
+        <span></span>
+        <input type="password" name="password" value="" placeholder="Enter your password">
+        <span></span>
+        <input type="submit" name="s" value="Sign In" id="button">
+        <h5><a href="#">Forgot Password?</a></h5>
+        <br>
+        <h4>New To V&D MovieMate?&nbsp;<a href="/getregister">Sign Up Now.</a></h4>
+            <br>
+                <h5><a href="/registeradmin">Sign Up As Admin</a></h5>
+    </form> 
+
+<% } else if (status === "adminLogin") { %>
+        <%-include("regformadmin.ejs")%>
+<% } else { %>
+    <%- include("Registerindexuser.ejs") %>
+<% } %>
+                </div>
+        </div>
+</body>
+</html>
