@@ -1,0 +1,27 @@
+{
+  "name": "movie_recommendation_system",
+  "version": "1.0.0",
+  "description": "\"movie recommendation system project\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VaishnaviHirulkar-2003/Movie_Recommendation_System.git"
+  },
+  "author": "\"vaishnavi dipali\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VaishnaviHirulkar-2003/Movie_Recommendation_System/issues"
+  },
+  "homepage": "https://github.com/VaishnaviHirulkar-2003/Movie_Recommendation_System#readme",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "mysql2": "^3.14.1"
+  }
+}
