@@ -1,7 +1,7 @@
 let app=require("./src/app");
-
-
-app.listen(3000,()=>
+require("dotenv").config();
+let port=process.env.PORT||3000;
+app.listen(port,()=>
 {
-    console.log("stared");
+    console.log("Server Started on port"+ port);
 });
