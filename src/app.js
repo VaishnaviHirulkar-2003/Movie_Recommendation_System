@@ -3,7 +3,7 @@ const con = require("./Config/db");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
-let router=require("./Router/Router");
+let route=require("./Router/Router");
 const app = express(); //to call a express function inside the express module to return the createapplication function
 
 // Middleware to use before run 
@@ -22,6 +22,6 @@ app.use(session({
     cookie: { secure: false }    
 }));
 app.set("view engine","ejs");
-app.use("/",router);
+app.use("/",route);
 // Export app
 module.exports = app;
