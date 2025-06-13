@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Movie</title>
+  <style>
+    body {
+      background-color: rgb(25, 24, 24);
+      font-family: Arial, sans-serif;
+      color: white;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .AddMovie {
+      width: 320px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      color: black;
+    }
+
+    .AddMovie h2 {
+      margin-bottom: 15px;
+    }
+
+    .AddMovie input[type="text"],
+    .AddMovie input[type="file"] {
+      width: 90%;
+      padding: 8px;
+      margin: 10px 0;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      transition: border-color 0.3s ease;
+    }
+
+    .AddMovie input:hover {
+      border-color: #131a22;
+    }
+
+    .AddMovie button {
+      padding: 10px 20px;
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .AddMovie button:hover {
+      background-color: rgb(216, 91, 91);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="AddMovie">
+    <h2>Add Movie</h2>
+    <form action="/add-movie" method="POST" enctype="multipart/form-data">
+      <input type="text" name="movieName" placeholder="Enter Movie Name" required>
+      <input type="text" name="movieDetails" placeholder="Enter the Movie Details" required>
+      <input type="file" name="moviePoster">
+      <button type="submit">Add Movie</button>
+    </form>
+  </div>
+
+</body>
+</html>
