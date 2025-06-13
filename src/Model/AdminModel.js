@@ -1,0 +1,43 @@
+const { resource } = require("../app");
+let con=require("../Config/db");
+
+
+exports.addmovie = (title, desc, date, dir, lang, country, rup, rev, time, img, url, genre_id) => {
+  return new Promise((resolve, reject) => {
+
+    // Step 1: Get the genre name using genre_id
+    con.query("SELECT name FROM genres WHERE genre_id = ?", [genre_id], (err, result) => {
+      if (err) {
+        console.log("Genre fetch error:", err);
+        return reject("Failed to fetch genre");
+      }
+
+      if (result.length === 0) {
+        console.log("Genre not found for ID:", genre_id);
+        return reject("Invalid genre ID");
+      }
+
+      const genre = result[0].genre;
+
+      // Step 2: Proceed to insert the movie
+      const query = `
+        INSERT INTO movies (
+          title, description, release_date, genre,
+          director, language, country, budget,
+          revenue, runtime, poster_url, trailer_url, genre_id
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+      const values = [title, desc, date, genre, dir, lang, country, rup, rev, time, img, url, genre_id];
+
+      con.query(query, values, (err, insertResult) => {
+        if (err) {
+          console.log("Insert error:", err.sqlMessage || err);
+          return reject("Insert Failed");
+        }
+
+        resolve("Success");
+      });
+    });
+
+  });
+};

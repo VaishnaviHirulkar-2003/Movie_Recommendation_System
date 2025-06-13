@@ -185,7 +185,7 @@ body {
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 .timg img {
-    width: 100%;
+    width: 95%;
     height: 100%;
     border-radius: 10px;
     cursor: pointer;
@@ -232,7 +232,7 @@ body {
     width: 40%;
     height: 40px;
     background-color: #252833;
-    margin-left: 25%;
+    margin-left: 0%;
     border-radius: 10px;
     border: none;
     color: white;
@@ -241,6 +241,14 @@ body {
     line-height: 40px;
     font-weight: 400;
     margin-top: 6%;
+    cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: all 0.3s ease-in-out;
+}
+.tinfo a button:hover
+{
+    transform: scale(1.04);
+    filter: brightness(1.05); /* Gentle brightness */
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.15); /* Soft, subtle shadow */
 }
 

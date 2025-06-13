@@ -2,7 +2,18 @@ let express=require("express");
 let model=require("../Model/Model")
 exports.indexpage=(req,res)=>
 {
+    if(req.session.adminname)
+    {
+        // console.log("yes"+req.session.adminname);
+          res.render("AdminDashBoard.ejs",{filename:"no",childfilename:"no",msg:"",genre:[]});
+    }
+    else if(req.session.username)
+    {
+         res.render("userdashboard");
+    }
+    else{
     res.render("index",{status:"login",msg:""});
+    }
 }
 exports.indexreg=(req,res)=>
 {
@@ -16,16 +27,21 @@ exports.loginuser=(req,res)=>
 {
     let{username,password,role}=req.body;
     async function getuser() {
+        try{
         let result=await model.loginuser(username,password,role);
+        // console.log(result)
         if(result==="Success")
         {
             if(role==="Admin")
             {
-                res.send("Admin DashBoard");
+                req.session.adminname=username;
+                // res.send("Admin DashBoard");
+                res.render("AdminDashBoard.ejs",{filename:"no",childfilename:"no",msg:"",genre:[]});
             }
             else
             {
                 // res.send("User Dashboard");
+                req.session.username=username;
                 res.render("userdashboard");//after login
             }
         }
@@ -33,6 +49,10 @@ exports.loginuser=(req,res)=>
         {
             res.render("index",{status:"login",msg:result});
         }
+    }
+     catch (err) {
+        res.render("index", { status: "login", msg: err });  // For database error or invalid password
+    }
     }
     getuser();
 }
