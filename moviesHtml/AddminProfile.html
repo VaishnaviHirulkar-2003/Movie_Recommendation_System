@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Profile Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: rgb(28, 27, 27);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .AdminProfile {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    .AdminProfile h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .AdminProfile input[type="text"],
+    .AdminProfile input[type="email"],
+    .AdminProfile input[type="password"],
+    .AdminProfile input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .AdminProfile button {
+      width: 100%;
+      padding: 10px;
+      background-color: #f80d0d;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .AdminProfile button:hover {
+      background-color: #e75151;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="AdminProfile">
+    <h1>Admin Profile</h1>
+    <form action="/adminProfile-login" method="POST">
+      <input type="text" id="userName" name=" " placeholder="Enter Username" required>
+      <input type="email" id="email" name=" " placeholder="Enter Email" required>
+      <input type="password" id="UserPassword" name=" " placeholder="Enter Password" required>
+      <input type="tel" id="contact" name=" " placeholder="Enter Contact" required>
+      <button type="submit">Update</button>
+    </form>
+  </div>
+
+</body>
+</html>
