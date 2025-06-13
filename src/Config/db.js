@@ -1,6 +1,7 @@
 
 let express=require("express");
 let mysql=require("mysql2");
+let bcrypt=require("bcrypt");
 require("dotenv").config();
 let con=mysql.createConnection(
     {
@@ -20,5 +21,4 @@ con.connect((err)=>
         console.log("database connected sucessfully");
     }
 });
-
 module.exports=con;

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/Css/AdminDashBoard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+  <div class="main">
+    
+    <div class="sidebar">
+      <div class="logo">
+        <img src="/Image/1Logo.png" alt="Movie Admin Logo" class="logo-img">
+      </div>
+
+        <ul class="menu">
+                <li><a href="/userdashboard"><i class="fa-solid fa-house"></i>&nbsp;&nbsp;&nbsp;Application</a> </li>
+                <li><a href="/admin/moviesapi"><i class="fas fa-film"></i>&nbsp;&nbsp;&nbsp;Movies</a></li>
+                <li><a href="/admin/usersapi"><i class="fas fa-users"></i>&nbsp;&nbsp;&nbsp;Users</a></li>
+                <li><a href="/ratingapi"><i class="fas fa-star"></i>&nbsp;&nbsp;&nbsp;Ratings & Reviews</a></li>
+                <li><a href="/profileapi"><i class="fas fa-user-cog"></i>&nbsp;&nbsp;&nbsp;Admin Profile</a></li>
+                <li><a href="/adminapi"><i class="fas fa-plus plus-icon"></i>&nbsp;&nbsp;&nbsp;Add Admin</a></li>
+                <li><a href="/logoutapi"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;&nbsp;Logout</a></li>
+                <li><a href="#"><i class="fas fa-image"></i>&nbsp;&nbsp;&nbsp;Poster</a></li>
+        </ul>
+    </div>
+      <div class="content">
+                <div class="navbar">
+                    <h2>Welcome Admin</h2>
+                    <div class="admin-dropdown">
+                    <i class="fas fa-user-cog"></i>
+                    <div class="dropdown">
+                          <a href="#">Username</a>
+                          <a href="#">Email :</a>
+                          <a href="#">Contact :</a>
+                          <button class="logout-btn">Logout</button>
+                  </div>
+                  </div>
+               </div>
+
+               <div class="maincon">
+                    <%if(filename!=="no")
+                    {
+                      %>
+                          <%-include(filename)%>
+                      <%
+                    }%>
+               </div>
+      </div>
+    </div>
+</body>
+</html>
