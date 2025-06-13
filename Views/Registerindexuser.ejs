@@ -6,15 +6,25 @@
     <title>Document</title>
 </head>
 <body>
-    <form name="frm" action="/savereg" method="post">
+    <form name="frm" action="/savereguser" method="post">
         <h3>Sign Up</h3>
         <input type="text" name="username" value="" placeholder="Username">
         <input type="email" name="email" value="" placeholder="Email">
         <input type="password" name="password" value="" placeholder="Password">
-        <input type="submit" name="s" value="Sign up" id="button">
+        <input type="text" name="role" value="User" readonly>
+        <input type="submit" name="s" value="Sign up" id="button" style="cursor: pointer;">
         <h4>Already Have Account?&nbsp;<a href="/">Sign In Now.</a></h4>
+        <br>
+            <h5><%=msg%></h5>
             <br>
-                <h5><a href="/registeradmin">Sign Up As Admin</a></h5>
+            <%if(msg==="Registration Sucessfull")
+            {
+                %>
+                    <h5>Want To Continue without Login <a href="/userdashboard">Click Here</a></h5>
+                <%
+            }%>
+            <br>
+                <!-- <h5><a href="/registeradmin">Sign Up As Admin</a></h5> -->
     </form>
 </body>
 </html>

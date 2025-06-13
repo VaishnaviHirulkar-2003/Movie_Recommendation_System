@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/VaishnaviHirulkar-2003/Movie_Recommendation_System#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "body-parser": "^2.2.0",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.5.0",
