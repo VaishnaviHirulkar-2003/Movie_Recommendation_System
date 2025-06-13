@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Login</title>
+  <style>
+    body {
+      background-color:rgb(25, 24, 24);
+    }
+
+    .User {
+       width: 300px;
+      margin: 190px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+    .User h2 {
+      margin-bottom: 15px;
+    }
+
+    .User input[type="text"],
+    .User input[type="password"] {
+       width: 90%;
+      padding: 8px;
+      margin: 10px 0;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .User input[type="text"]:hover,
+    .User input[type="password"]:hover {
+      border-color: #131a22;
+    }
+
+    .User button {
+       padding: 10px 20px;
+      background-color:red;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .User button:hover {
+      background-color: rgb(216, 91, 91);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="User">
+    <h2>User Login</h2>
+    <form action="/user-login" method="POST">
+      <input type="text" id="UserEmail" name=" " placeholder="Enter the Email " required>
+    <input type="password" id="UserPassword" name="UserPassword" placeholder="Enter password" required>
+     <input type="text" id="userName" name=" " placeholder="Enter  Username" required>
+     <input type="text" id="user" name=" " value="User" readonly>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+
+
+
+  
+</body>
+</html>
