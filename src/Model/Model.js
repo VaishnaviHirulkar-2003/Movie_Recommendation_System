@@ -47,3 +47,30 @@ exports.savereguser=(username,email,password,role)=>
     });
     //password incrypt format
 }
+//for  userdashbaord
+
+exports.gettodata=()=>
+{
+    return new Promise((resolve,reject)=>
+    {
+         con.query("Select poster_url,trailer_url,Title from movies order by movie_id desc limit 1",(err,result)=>
+        {
+            if(err)
+            {
+              reject("err");
+            }
+            else
+            {
+              if(result.length==0)
+              {
+                reject("Err");
+              }
+              else
+              {
+                console.log(result);
+                resolve(result[0]);
+              }
+            }
+        });
+    });
+};
