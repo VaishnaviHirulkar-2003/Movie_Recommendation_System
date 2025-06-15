@@ -74,5 +74,16 @@ exports.savereguser=(req,res)=>
 }
 exports.userdashboard=(req,res)=>
 {
-    res.render("userdashboard"); //before login
+    async function getdataforteaser(params) {
+        try
+        {
+            let r=await model.gettodata();
+            res.render("userdashboard",{topdata:r}); //before login
+        }
+        catch(err)
+        {
+            res.render("userdashboard",{topdata:{poster_url :"./Image/sairat.png",trailer_url:"linkrel",Title:"Gum Hain Kisi Ke Pyar Main"}} );
+        }   
+    }
+    getdataforteaser();
 }

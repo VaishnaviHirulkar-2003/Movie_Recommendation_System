@@ -17,4 +17,8 @@ router.get("/usersapi",ctrl.userapi);
 
 router.get("/adduserpage",ctrl.adduserpage);
 router.post("/savereguserbyadmin",ctrl.savereguserbyadmin);
+router.get("/profileapi",ctrl.profileapi);
+router.post("/updateadmin",ctrl.updateadmin);
+router.get("/adminapi",ctrl.adminapi);
+router.get("/addadmin",ctrl.addadmin);
 module.exports=router;

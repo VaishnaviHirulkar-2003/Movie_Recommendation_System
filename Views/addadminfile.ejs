@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add User</title>
+  <style>
+    /* body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    } */
+
+    .user-form-container {
+      background: #fff;
+      padding: 10px 40px;
+      border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      max-width: 400px;
+      width: 100%;
+      /* border: 1px solid #000; */
+      margin: auto;
+      margin-top: 0%;
+    }
+
+    .user-form-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    .user-form-container input,
+    .user-form-container select {
+      width: 100%;
+      padding: 12px;
+      margin: 12px 0;
+      border: 1px solid black;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: 0.3s ease;
+    }
+
+    .user-form-container input:focus,
+    .user-form-container select:focus {
+      border-color: #ff9800;
+      outline: none;
+    }
+
+    .user-form-container button {
+      width: 100%;
+      padding: 12px;
+      background-color: #ff9800;
+      border: none;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .user-form-container button:hover {
+      background-color: #e08900;
+      transform: scale(1.02);
+    }
+    .user-form-container h4
+    {
+      text-align: center;
+      color: #ff9800;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="user-form-container">
+    <h2>Add User</h2>
+    <form action="/admin/savereguserbyadmin" method="POST">
+      <input type="text" name="username" placeholder="Enter Username" required>
+      <input type="email" name="email" placeholder="Enter Email" required>
+      <input type="password" name="oldpass" placeholder="Enter Your paddword" required>
+      <input type="password" name="password" placeholder="Enter new admin Password" required>
+      <input type="role" name="role" value="Admin" readonly>
+      <button type="submit">Add User</button>
+
+      <h4><%=msg%></h4>
+    </form>
+  </div>
+
+</body>
+</html>

@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
+
+
 </head>
 <body>
 
@@ -42,16 +44,56 @@
       <!-- Your video or main content -->
        <div class="teaser">
             <div class="timg">
-                <img src="./Image/sairat.png">
+               <img src="<%=topdata.poster_url %>" alt="Movie Poster">
             </div>
             <div class="tinfo">
-                <h2>Gum Hain Kisi Ke Pyar Main</h2>
+                <h2><%=topdata.Title%></h2>
                 <h4>Comming Soon</h4>
                 <h3>All Your Favourate Movies and Shows Only On V&DMovieMate</h3>
-                <a href="#"><button>Teaser</button></a>
+                <a href=<%=topdata.trailer_url%> target="_blank"><button>Teaser</button></a>
             </div>
        </div>
     </div>
+
+    <div class="simpleall">
+
+
+       <div class="slide slide1">
+      <video src="video1.mp4" autoplay muted loop></video>
+    </div>
+    <div class="slide slide2">
+      <video src="video2.mp4" autoplay muted loop></video>
+    </div>
+    <div class="slide slide3">
+      <video src="video3.mp4" autoplay muted loop></video>
+    </div>
+      <div class="trailer">
+  <video id="myVideo" src="./Teaser/Sita Ramam Official Trailer _ In Hindi _ 18th November _ DisneyPlus Hotstar (1).mp4"
+         playsinline
+         muted  loop>
+  </video>
+
+  <button id="unmuteBtn" class="unmute-button">🔊 Unmute & Play</button>
+</div>
+
   </div>
+  </div>
+
+  <!-- Place this just before the closing </body> -->
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const video = document.getElementById('myVideo');
+    const btn = document.getElementById('unmuteBtn');
+
+    video.pause();
+    video.muted = true;
+    btn.addEventListener('click', () => {
+      video.muted = false;
+      video.play();
+      btn.style.display = 'none';
+    });
+  });
+</script>
+
 </body>
 </html>

@@ -63,8 +63,57 @@ exports.savereguserbyadmin=(req,res)=>
             }
             else
             {
-                res.render("AdminDashBoard.ejs",{filename:"useradmin.ejs",childfilename:"adduserbyadminform.ejs",msg:"r ",genre:[]});
+                res.render("AdminDashBoard.ejs",{filename:"useradmin.ejs",childfilename:"adduserbyadminform.ejs",msg:r,genre:[]});
             }
         } 
         getreg();
+}
+
+//for admin profile
+exports.profileapi=(req,res)=>
+{
+    let username=req.session.adminname;
+
+    async function getadmindata() 
+    {
+        let r=await model.profileapi(username);
+        console.log(r);
+        res.render("AdminDashBoard.ejs",{filename:"adminprofile.ejs",childfilename:"",msg:r,genre:[]});
+    }
+    getadmindata();
+}
+exports.updateadmin = (req, res) => {
+  let { userid, username, password, npass, email } = req.body;
+
+  async function updateprofile() {
+    try {
+      let r = await model.updateadmin(userid, username, password, npass, email);
+      let updatedData = await model.profileapi(username);
+      res.render("AdminDashBoard.ejs", {
+        filename: "adminprofile.ejs",
+        childfilename: "",
+        msg: updatedData,
+        genre: "Profile Updated Successfully",
+      });
+    } catch (err) {
+      let originalData = await model.profileapi(username);
+      console.log("helo");
+      res.render("AdminDashBoard.ejs", {
+        filename: "adminprofile.ejs",
+        childfilename: "",
+        msg: originalData,
+        genre: err,
+      });
+    }
+  }
+
+  updateprofile();
+};
+exports.adminapi=(req,res)=>
+{
+    res.render("AdminDashBoard.ejs",{filename:"addadminbyadmin.ejs",childfilename:"no",msg:"",genre:[]});
+}
+exports.addadmin=(req,res)=>
+{
+    res.render("AdminDashBoard.ejs",{filename:"addadminbyadmin.ejs",childfilename:"addadminfile.ejs",msg:"",genre:[]})
 }
