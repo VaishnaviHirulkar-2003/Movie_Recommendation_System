@@ -86,3 +86,71 @@ exports.updateadmin = (userid, username, password, npass, email) => {
   });
 };
 
+// exports.saveregadmin = (username, email, oldpass,password, role,uname) => {
+//   console.log("model");
+//   return new Promise((resolve, reject) =>
+//      {
+//     con.query("select * from users where username = ?", [uname], (err, result) => {
+//       if (err) return reject("Invalid Credentials");
+//       if (result.length > 0) {
+//         const existingUser = result[0];
+//         const match = bcrypt.compareSync(oldpass, existingUser.password);
+//         if (match) 
+//           {
+//                const hashedPassword = bcrypt.hashSync(password, 8);
+//                 const insertQuery = "insert into users (username, email, password, role) values(?, ?, ?, ?)";
+//                       con.query(insertQuery, [username, email, hashedPassword, role], (err,result1)=> {
+//                         if (err) {
+//                                      console.log("Insert error:", err);
+//                                       return resolve("Username Already Exits");
+//                                  }
+//                                  console.log("done");
+//                     return resolve("Admin Added Sucesfully");
+//                 });
+//           }
+//       }
+//     });
+//   });
+// };
+
+exports.saveregadmin = (username, email, oldpass, password, role, uname) => {
+  console.log("model");
+
+  return new Promise((resolve, reject) => {
+    // Step 1: Check if the admin (uname) is valid
+    con.query("SELECT * FROM users WHERE username = ?", [uname], (err, result) => {
+      if (err) return reject("Invalid Credentials");
+
+      if (result.length > 0) {
+        const existingUser = result[0];
+        const match = bcrypt.compareSync(oldpass, existingUser.password);
+
+        if (match) {
+          // Step 2: Check if new username already exists
+          con.query("SELECT * FROM users WHERE username = ?", [username], (err2, existing) => {
+            if (err2) return reject("Database error during validation");
+            if (existing.length > 0) return resolve("Username Already Exists");
+
+            // Step 3: Proceed to insert
+            const hashedPassword = bcrypt.hashSync(password, 8);
+            const insertQuery = "INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)";
+
+            con.query(insertQuery, [username, email, hashedPassword, role], (err3, result1) => {
+              if (err3) {
+                console.log("Insert error:", err3);
+                return resolve("Insert Failed");
+              }
+              console.log("done");
+              return resolve("Admin Added Successfully");
+            });
+          });
+        } else {
+          return resolve("Invalid Current Admin Password");
+        }
+      } else {
+        return resolve("Admin not found");
+      }
+    });
+  });
+};
+

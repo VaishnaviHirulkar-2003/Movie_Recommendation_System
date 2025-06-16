@@ -73,7 +73,7 @@ exports.savereguserbyadmin=(req,res)=>
 exports.profileapi=(req,res)=>
 {
     let username=req.session.adminname;
-
+    console.log(username);
     async function getadmindata() 
     {
         let r=await model.profileapi(username);
@@ -117,3 +117,26 @@ exports.addadmin=(req,res)=>
 {
     res.render("AdminDashBoard.ejs",{filename:"addadminbyadmin.ejs",childfilename:"addadminfile.ejs",msg:"",genre:[]})
 }
+
+exports.savereguserbyadmin = (req,res) => {
+    console.log("yes");
+     let uname=req.session.adminname;
+     console.log(uname+"hello");
+  const { username, email, oldpass,password, role } = req.body;
+        async function getuserinsert() {
+                try
+                {
+                    let r=await model.saveregadmin(username,email,oldpass,password,role,uname);
+                    console.log(r);
+                     res.render("AdminDashBoard.ejs",{filename:"addadminbyadmin.ejs",childfilename:"addadminfile.ejs",msg:r,genre:[]})
+
+                }
+                catch(err)
+                {
+                         console.log(err);
+                         res.render("AdminDashBoard.ejs",{filename:"addadminbyadmin.ejs",childfilename:"addadminfile.ejs",msg:"Something wnet wrong",genre:[]})
+                }
+        }
+        getuserinsert();
+};
+
