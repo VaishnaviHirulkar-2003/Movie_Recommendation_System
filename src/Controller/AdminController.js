@@ -179,3 +179,17 @@ exports.logoutapi=(req,res)=>
     });
 
 }
+
+//view admin
+exports.viewadmin=async(req,res)=>{
+    try{
+        let r=await model.getadmin();
+         res.render("AdminDashBoard.ejs",{filename:"useradmin.ejs",childfilename:"viewadmin.ejs",msg:"",admin:r})
+
+    }
+    catch(err){
+        res.render("AdminDashBoard.ejs",{filename:"useradmin.ejs",childfilename:"viewadmin.ejs",msg:"something went wrong",admin:[]})
+
+    }
+
+}

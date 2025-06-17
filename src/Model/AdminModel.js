@@ -195,3 +195,20 @@ exports.viewuser=()=>
   });
 }
 
+
+//get admin model
+exports.getaddmin=()=>{
+  return new Promise((resolve,reject)=>{
+    con.query("SELECT  user_id,username, email,password,role,TIME(created_at) AS created_time,TIME(updated_at) AS updated_time FROM users where role=?",["admin"],(err,result)=>
+    {
+          if(err)
+          {
+            console.log(err);
+            reject(err)
+          }
+          else{
+            resolve(result);
+          }
+    });
+  });
+}

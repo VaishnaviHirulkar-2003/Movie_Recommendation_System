@@ -23,4 +23,5 @@ router.get("/addadmin",ctrl.addadmin);
 router.get("/viewmovies",ctrl.viewmovies);
 router.get("/viewuserpagead",ctrl.viewuserpagead);
 router.get("/logoutapi",ctrl.logoutapi);
+router.get("/viewadmin",ctrl.viewadmin);
 module.exports=router;
