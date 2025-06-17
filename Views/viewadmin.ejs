@@ -10,28 +10,48 @@
       font-family: Arial, sans-serif;
     }
 
-    table {
+ table {
       width: 100%;
       border-collapse: collapse;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: white;
     }
-
     th, td {
-      padding: 10px;
-      text-align: left;
-      border: 1px solid #ddd;
+      padding: 14px 18px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 15px;
+      color: black;
+      border:2px double black;
+    }
+    th {
+      background: #f1f1f1;
+      font-weight: 600;
+      text-transform: uppercase;
+      background-color: #ff9800;
+       background: linear-gradient(135deg, #ff9800, #e68900);
+         color: #ffffff;
     }
 
     thead {
-      background-color: #f2f2f2;
+      background-color: #e8d2d2;
     }
 
-    tr:hover {
+    tbody tr:hover {
       background-color: #f9f9f9;
+    }
+
+    td[colspan="5"] {
+      text-align: center;
+      color: #777;
     }
   </style>
 </head>
 <body>
   <div class="admin">
+    <h2>Admin Users</h2>
     <table>
       <thead>
         <tr>
@@ -42,12 +62,12 @@
           <th>Updated At</th>
         </tr>
       </thead>
-      <tbody>
-           <% if (admin.length > 0) { %>
-          <% user.forEach((u, index) => { %>
+     <tbody>
+        <% if (admin.length > 0) { %>
+          <% admin.forEach((u, index) => { %>
             <tr>
               <td><%= index + 1 %></td>
-              <td><%= u.adminname %></td>
+              <td><%= u.username %></td>
               <td><%= u.email %></td>
               <td><%= u.created_time %></td>
               <td><%= u.updated_time %></td>
