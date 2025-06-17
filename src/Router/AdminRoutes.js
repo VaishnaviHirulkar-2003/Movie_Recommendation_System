@@ -10,8 +10,6 @@ router.get("/addmoviepage",ctrl.addmoviepage);
 // Route to handle add movie with file upload
 router.post("/addmovie", upload.none(), ctrl.addmovie);
 
-
-
 //for user menu for admin
 router.get("/usersapi",ctrl.userapi);
 router.get("/adduserpage",ctrl.adduserpage);
@@ -24,4 +22,8 @@ router.get("/viewmovies",ctrl.viewmovies);
 router.get("/viewuserpagead",ctrl.viewuserpagead);
 router.get("/logoutapi",ctrl.logoutapi);
 router.get("/viewadmin",ctrl.viewadmin);
+router.get("/Deleteapi",ctrl.deleteadminfile);
+router.post("/deleteadminapi",ctrl.deleteadmin);
+
+
 module.exports=router;

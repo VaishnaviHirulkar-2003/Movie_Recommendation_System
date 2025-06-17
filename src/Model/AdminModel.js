@@ -214,3 +214,38 @@ exports.getadmin=()=>{
     });
   });
 }
+
+exports.deleteadmin = (username, password) => {
+  return new Promise((resolve, reject) => {
+    con.query("SELECT password FROM users WHERE username = ? AND role = ?",[username, "admin"],(err, result) => {
+        if (err) {
+          return reject("Something went wrong");
+        }
+    if (result.length === 0) {
+          return reject("Admin not found");
+        }
+        const hashedPassword = result[0].password;
+        if (!password || !hashedPassword) {
+          return reject("Invalid data");
+        }
+
+        const compare = bcrypt.compareSync(password, hashedPassword);
+
+        if (compare) {
+          con.query("DELETE FROM users WHERE username = ?",[username],(err, r) => {
+              if (err) {
+                return reject("Profile deletion failed");
+              } 
+              else {
+                return resolve("Deleted successfully");
+              }
+            });
+        } 
+        else {
+          return reject("Password does not match");
+        }
+      }
+    );
+  });
+};
+

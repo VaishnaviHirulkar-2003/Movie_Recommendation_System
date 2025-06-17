@@ -193,3 +193,21 @@ exports.viewadmin=async(req,res)=>{
     }
 
 }
+
+//delete
+exports.deleteadminfile = (req, res) => {
+    console.log("hii");
+    res.render("AdminDashBoard.ejs",{filename:"Delete.ejs",msg:" "});
+}
+exports.deleteadmin =async(req,res)=>{
+    let{username,password}=req.body;
+try{
+        let r=await model.deleteadmin(username,password)
+          res.render("AdminDashBoard.ejs",{filename:"Delete.ejs",msg:r});
+}
+catch(err){
+          res.render("AdminDashBoard.ejs",{filename:"Delete.ejs",msg:"Invalid"});
+}
+}
+
+

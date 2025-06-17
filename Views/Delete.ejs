@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Delete Admin</title>
+  <link rel="stylesheet" href="/Css/AdminDashBoard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+     .delete-container {
+      background-color: white; 
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(243, 240, 240, 0.1);
+      width: 400px;
+      text-align: center;
+      margin-left: 370px;
+      margin-top: 180px;
+    }
+    .delete-title {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+   form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; 
+}
+
+select, button, input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+    button {
+      background-color: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+<body>
+  <div class="delete-container">
+    <div class="delete-title">Delete Admin</div>
+
+
+    <form action="/admin/deleteadminapi" method="POST" >
+      <input type="text" name="username" value="" placeholder="Enter the username">
+    <input type="password" name="password" value="" placeholder="Enter the password">
+
+      <button type="submit" onclick="return deleteadmin()">Delete</button>
+      <h4><%=msg%></h4>
+    </form>
+  </div>
+
+
+  <script>
+
+    function deleteadmin()
+    {
+       return confirm("You sure want to delete");
+    }
+  </script>
+</body>
+</html>
