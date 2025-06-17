@@ -5,6 +5,7 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 let route=require("./Router/Router");
 let adminroute=require("./Router/AdminRoutes");
+let userroute=require("./Router/userrouter");
 const app = express(); //to call a express function inside the express module to return the createapplication function
 
 // Middleware to use before run 
@@ -31,5 +32,6 @@ app.use(session({
 app.set("view engine","ejs");
 app.use("/",route);
 app.use("/admin",adminroute);
+app.use("/user",userroute);
 // Export app
 module.exports = app;

@@ -20,6 +20,7 @@ router.get("/profileapi",ctrl.profileapi);
 router.post("/updateadmin",ctrl.updateadmin);
 router.get("/adminapi",ctrl.adminapi);
 router.get("/addadmin",ctrl.addadmin);
-
-
+router.get("/viewmovies",ctrl.viewmovies);
+router.get("/viewuserpagead",ctrl.viewuserpagead);
+router.get("/logoutapi",ctrl.logoutapi);
 module.exports=router;

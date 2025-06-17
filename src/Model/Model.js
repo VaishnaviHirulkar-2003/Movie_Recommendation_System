@@ -74,3 +74,21 @@ exports.gettodata=()=>
         });
     });
 };
+
+exports.getlatest=()=>
+{
+  return new Promise((resolve,reject)=>
+  {
+      con.query("select * from  movies limit 4",(err,result)=>
+      {
+        if(err)
+        {
+          reject(err);
+        }
+        else
+        {
+          resolve(result);
+        }
+      })
+  });
+}

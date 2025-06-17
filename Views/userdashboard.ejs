@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>V&DMovieMate User Portal</title>
-  <link rel="stylesheet" href="./Css/Userdashboard.css">
+  <link rel="stylesheet" href="/Css/Userdashboard.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 
 
 </head>
-<body>
 
   <!-- NOTICE BAR -->
   <div class="notice-bar" id="noticeBar">
@@ -28,14 +27,14 @@
       </div>
 
       <div class="option" id="menuOptions">
-        <a href="#" id="first"><i class="fa-solid fa-house"></i>&nbsp;&nbsp;Home</a>
+        <a href="/uerdashborad" id="first"><i class="fa-solid fa-house"></i>&nbsp;&nbsp;Home</a>
         <a href="#"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;&nbsp;Search</a>
         <a href="#"><i class="fa-solid fa-tv"></i>&nbsp;&nbsp;Shows</a>
         <a href="#"><i class="fa-solid fa-clapperboard"></i>&nbsp;&nbsp;Movie</a>
         <a href="#"><i class="fa-solid fa-trophy"></i>&nbsp;&nbsp;Sports</a>
         <a href="#"><i class="fa-solid fa-video"></i>&nbsp;&nbsp;Sparks</a>
         <a href="#"><i class="fa-solid fa-puzzle-piece"></i>&nbsp;&nbsp;Section</a>
-        <a href="#"><i class="fa-solid fa-bookmark"></i>&nbsp;&nbsp;Saved</a>
+        <a href="/user/savedmovies"><i class="fa-solid fa-bookmark"></i>&nbsp;&nbsp;Saved</a>
         <a href="#"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;Profile</a>
       </div>
     </div>
@@ -56,33 +55,113 @@
     </div>
 
     <div class="simpleall">
-      <div class="trailer">
-  <video id="myVideo" src="./Teaser/Sita Ramam Official Trailer _ In Hindi _ 18th November _ DisneyPlus Hotstar (1).mp4"
-         playsinline
-         muted  loop>
-  </video>
-
-  <button id="unmuteBtn" class="unmute-button">🔊 Unmute & Play</button>
+<div class="trailer">
+  <video class="vidclick active" src="./Teaser/Sita Ramam Official Trailer _ In Hindi _ 18th November _ DisneyPlus Hotstar (1).mp4"  autoplay playsinline></video>
+  <video class="vidclick" src="./Teaser/Mannat Har Khushi Paane Ki NEW SERIAL PROMO Clash Between Mom & Daughter _ Ayesha Singh.mp4" autoplay playsinline></video>
+  <video class="vidclick" src="./Teaser/KGF Trailer Hindi _ Yash _ Srinidhi _ 21st Dec 2018.mp4" autoplay playsinline></video>
+  <button id="unmuteBtn">🔊 Unmute</button>
 </div>
-
-  </div>
   </div>
 
-  <!-- Place this just before the closing </body> -->
+
+
+  <div class="latestrelease">
+      <h3>Latest Releases</h3>
+
+      <div class="latestmovie">
+             <% if (latest.length > 0) { %>
+                         <% latest.forEach((l) => { %>
+                          <div class="moviel" id="movie-<%=l.movie_id%>">
+                                    <img src="<%=l.poster_url%>">
+                                    <a href="#"><button onclick="addToWatchlist('<%= l.movie_id %>')">
+                                     <i class="fas fa-plus"></i> Add
+                          </button></a> 
+                            <span class="added-msg" style="display:none; color:green;">Added ✔️</span>
+                           <a href="<%=l.trailer_url%>" target="_blank"><button><i class="fas fa-play-circle"></i>Teaser</button></a>
+                          <a href="<%=l.full_movie_url%>" target="_blank"><button id="watch"><i class="fas fa-play-circle"></i>Play</button></a>
+              </div>
+
+              <% }) %>
+            <% } else { %>
+                        <h1>No Movies Release Yet</h1>
+            <% } %>
+
+      </div>
+  </div>
+
+  </div><!--maindivuser-->
+
+    <!--code for the some common movies-->
+    
+ 
+    
+
+
 <script>
-  window.addEventListener("DOMContentLoaded", () => {
-    const video = document.getElementById('myVideo');
-    const btn = document.getElementById('unmuteBtn');
+const videos = document.querySelectorAll(".trailer .vidclick");
+let current = 0;
 
+function playCurrentVideo() {
+  if (videos.length === 0) return;
+
+  videos.forEach((video, index) => {
     video.pause();
-    video.muted = true;
-    btn.addEventListener('click', () => {
-      video.muted = false;
-      video.play();
-      btn.style.display = 'none';
-    });
+    video.style.opacity = 0;
   });
-</script>
 
+  const currentVideo = videos[current];
+  currentVideo.currentTime = 0;
+  currentVideo.muted = true;
+  currentVideo.style.opacity = 1;
+  currentVideo.play().catch(e => console.log(e));
+
+  currentVideo.onended = () => {
+    current = (current + 1) % videos.length;
+    playCurrentVideo();
+  };
+}
+
+// Start with the first video
+playCurrentVideo();
+
+// Unmute on click
+videos.forEach(video => {
+  video.addEventListener("click", function () {
+    videos.forEach(v => v.muted = true);
+    this.muted = false;
+    this.play();
+  });
+});
+
+document.getElementById("unmuteBtn").addEventListener("click", () => {
+  const currentVideo = videos[current];
+  videos.forEach(v => v.muted = true);
+  currentVideo.muted = false;
+  currentVideo.play();
+});
+
+
+function addToWatchlist(movieId) {
+  fetch(`/user/addwatchlist?mid=${movieId}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        const movieDiv = document.getElementById(`movie-${movieId}`);
+        const msgSpan = movieDiv.querySelector(".added-msg");
+
+        msgSpan.style.display = "inline"; // Show message
+
+        // Hide it after 2 seconds
+        setTimeout(() => {
+          msgSpan.style.display = "none";
+        }, 2000);
+      } else {
+        alert(data.message);
+      }
+    })
+    .catch(err => console.error("Error adding to watchlist:", err));
+}
+
+</script>
 </body>
 </html>

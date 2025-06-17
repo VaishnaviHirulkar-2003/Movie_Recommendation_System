@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Styled Table</title>
+  <style>
+    .moviecon {
+      width: 150%;
+      margin-left: -150px;
+      height: 450px;
+      overflow: auto;
+      margin-top: 0px;
+      padding: 10px;
+      padding-top: 0px;
+      background: #fefefe;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+                  rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+                  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+      transition: all 0.3s ease-in-out;
+      color: #222;
+      border-radius: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: white;
+    }
+
+    th, td {
+      padding: 14px 18px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 15px;
+      color: black;
+      border:2px double black;
+    }
+
+    th {
+      background: #f1f1f1;
+      font-weight: 600;
+      text-transform: uppercase;
+      background-color: #ff9800;
+       background: linear-gradient(135deg, #ff9800, #e68900);
+         color: #ffffff;
+    }
+
+    tr:nth-child(even) {
+      background-color: #fafafa;
+      transition: all 0.4s ease-in-out;
+      cursor: pointer;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #ffffff;
+          transition: all 0.4s ease-in-out;
+          cursor: pointer;
+    }
+
+    tr:hover {
+      background-color:#ff9800;
+    }
+
+    td img {
+      height: 95px;
+      width: 95px;
+      border-radius: 6px;
+      padding: 4px;
+      background-color: #f7f7f7;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      filter: brightness(0.93) contrast(0.9);
+      transition: transform 0.2s ease, filter 0.3s ease;
+    }
+
+    td img:hover {
+      transform: scale(1.03);
+      filter: brightness(1) contrast(1);
+    }
+
+    td a {
+      text-decoration: none;
+    }
+
+    td a button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      padding: 7px 12px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(255, 152, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    td a button:hover {
+      background-color: #e68900;
+      transform: scale(1.05);
+      box-shadow: 0 5px 12px rgba(255, 152, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="moviecon">
+    <table>
+      <thead>
+        <tr>
+          <th>Sr</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Created At</th>
+          <th>Updated At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (user.length > 0) { %>
+          <% user.forEach((u, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= u.username %></td>
+              <td><%= u.email %></td>
+              <td><%= u.created_time %></td>
+              <td><%= u.updated_time %></td>
+            </tr>
+          <% }); %>
+        <% } else { %>
+          <tr>
+            <td colspan="5"><strong>No Data Available</strong></td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

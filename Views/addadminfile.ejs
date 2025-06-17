@@ -17,7 +17,7 @@
 
     .user-form-container {
       background: #fff;
-      padding: 10px 40px;
+      padding: 10px;
       border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       max-width: 400px;
@@ -37,7 +37,7 @@
     .user-form-container select {
       width: 100%;
       padding: 12px;
-      margin: 12px 0;
+      margin: 10px 0;
       border: 1px solid black;
       border-radius: 8px;
       font-size: 14px;
@@ -53,7 +53,7 @@
     .user-form-container button {
       width: 100%;
       padding: 12px;
-      background-color: #ff9800;
+    background: linear-gradient(to right, #ff9800, #ff5722);
       border: none;
       color: white;
       font-size: 16px;
@@ -77,14 +77,14 @@
 <body>
 
   <div class="user-form-container">
-    <h2>Add User</h2>
+    <h2>Add Admin</h2>
     <form action="/admin/savereguserbyadmin" method="POST">
       <input type="text" name="username" placeholder="Enter Username" required>
       <input type="email" name="email" placeholder="Enter Email" required>
       <input type="password" name="oldpass" placeholder="Enter Your paddword" required>
       <input type="password" name="password" placeholder="Enter new admin Password" required>
       <input type="role" name="role" value="Admin" readonly>
-      <button type="submit">Add User</button>
+      <button type="submit">Add Admin</button>
 
       <h4><%=msg%></h4>
     </form>

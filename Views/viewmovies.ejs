@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+.moviecon {
+    width: 150%;
+    margin-left: -150px;
+    height: 450px;
+    overflow: auto;
+    margin-top: 0px;
+    padding: 20px;
+    background: #fefefe; /* even softer than white */
+    /* border-radius: 16px; */
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    transition: all 0.3s ease-in-out;
+    color: #222; /* dark gray for better contrast */
+}
+
+/* Table Styles */
+table {
+    width: 99%;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: #222;
+    background-color: transparent;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 14px 18px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 15px;
+    color: #222;
+}
+
+th {
+    background: #f2f2f2;
+    color: #111;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-bottom: 2px solid #ccc;
+}
+
+td {
+    color: #222;
+    font-weight: 700;
+}
+
+/* Alternating row colors */
+tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+tr:nth-child(odd) {
+    background-color: #f6f6f6;
+}
+
+/* Image Fix */
+td img {
+    height: 95px;
+    width: 95px;
+    border-radius: 6px;
+    padding: 4px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    filter: brightness(0.93) contrast(0.9)  ;/* this makes it subtle */
+    transition: transform 0.2s ease, filter 0.3s ease;
+}
+
+td img:hover {
+    transform: scale(1.03);
+    filter: brightness(1) contrast(1);
+}
+
+/* Anchor Reset */
+td a {
+    text-decoration: none;
+}
+
+/* Button Styling */
+td a button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 7px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(255, 152, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+td a button:hover {
+    background-color: #e68900;
+    transform: scale(1.05);
+    box-shadow: 0 5px 12px rgba(255, 152, 0, 0.5);
+}
+
+</style>
+
+</head>
+<body>
+    <div class="moviecon">
+            <table>
+                <thead>
+                        <th>Sr</th>
+                        <th>Title</th>
+                        <th>Genre</th>
+                        <th>Poster</th>
+                        <th>Director</th>
+                        <th>Trailer</th>
+                        <th>Movie</th>
+                        <th>Delete</th>
+                        <th>Update</th>
+                </thead>
+                <tbody>
+                      <% movie.forEach((m, index) => { %>
+                                 <tr>
+                                             <td><%= index + 1 %></td>
+                                            <td><%= m.title %></td>
+                                            <td><%= m.genre%></td>
+                                             <td><img src="<%=m.poster_url%>" alt="Poster"></td>
+                                             <td><%= m.director %></td>
+                                    <td><a href="<%=m.trailer_url%>" target="_blank"><button>Teaser</button></a></td>
+                                    <td><a href="<%= m.full_movie_url %>" target="_blank"><button>Movie</button></a></td>
+                                    <td><a href="#"><button><i class="fas fa-trash-alt"></i></button></a></td>
+                                    <td><a href="#"><button style="background-color: green; color:yellow;"><i class="fas fa-pen-to-square"></i></button></a></td>
+                                </tr>
+                <% }); %>
+</tbody>
+
+            </table>
+    </div>
+</body>
+</html>

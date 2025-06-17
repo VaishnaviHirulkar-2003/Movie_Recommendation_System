@@ -17,7 +17,7 @@ exports.addmovie = (title, desc, date, dir, lang, country, rup, rev, time, img, 
         return reject("Invalid genre ID");
       }
 
-      const genre = result[0].genre;
+      const genre = result[0].name;
 
       // Step 2: Proceed to insert the movie
       const query = `
@@ -43,10 +43,12 @@ exports.addmovie = (title, desc, date, dir, lang, country, rup, rev, time, img, 
 
 exports.profileapi=(username)=>
 {
+  console.log(username);
     return new Promise((resolve,resject)=>
     {
        con.query("select * from users where username=?",[username],(err,result)=>
         {
+          // console.log(result);
             resolve(result[0]);
         });
     });
@@ -153,4 +155,43 @@ exports.saveregadmin = (username, email, oldpass, password, role, uname) => {
     });
   });
 };
+
+exports.getmoviedata=()=>
+{
+    return new Promise((resolve,reject)=>
+    {
+        con.query("select * from movies",(err,result)=>
+        {
+          if(err)
+          {
+            reject("Some Problem is here")
+          }
+          else
+          {
+            resolve(result);
+          }
+        })
+    });
+}
+
+//to fecth the user data to display
+
+exports.viewuser=()=>
+{
+  return new Promise((resolve,reject)=>
+  {
+      con.query("SELECT  user_id,username, email,password,role,TIME(created_at) AS created_time,TIME(updated_at) AS updated_time FROM users where role=?",["user"],(err,result)=>
+      {
+          if(err)
+          {
+            console.log(err);
+            reject(err);
+          }
+          else
+          {
+            resolve(result);
+          }
+      });
+  });
+}
 

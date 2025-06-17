@@ -25,20 +25,6 @@ body {
     z-index: 999;
 }
 
-.notice-bar .close-btn {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: 2px 10px;
-    border-radius: 50%;
-}
-
 .notice-title {
     font-weight: bold;
     font-size: 1.1rem;
@@ -268,30 +254,142 @@ body {
     height: 500px;       /* Increase height to compensate */
     overflow: hidden;
 }
-.unmute-button {
-  position: absolute;
-  top: 90%;
-  left: 80%;
-  transform: translate(-50%, -50%);
-  padding: 10px 20px;
-  font-size: 16px;
-  color: white;
-  background-color: rgba(255, 87, 34, 0.8);
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  z-index: 10;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  transition: all 0.3s ease-in-out;
-}
-.unmute-button:hover {
-  background-color: rgba(255, 87, 34, 1);
-  transform: translate(-50%, -50%) scale(1.05);
-}
+
 .trailer {
   position: relative;
   overflow: hidden;
 }
 
+.trailer {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+}
 
+.trailer video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 1;
+  cursor: pointer;
+}
 
+#unmuteBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  padding:10px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  transform: translateY(-30px);
+}
+
+#unmuteBtn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.latestrelease
+{
+    width: 83%;
+    min-height: 100px;
+    /* border: 1px solid white; */
+    margin-left: 15%;
+    display: flex;
+    flex-direction: column;
+}
+.latestrelease h3
+{
+    color: white;
+    font-size: 23px;
+    font-weight: 500;
+}
+.latestmovie
+{
+    width: 100%;
+    height: 340px;
+    /* border: 1px solid wheat; */
+    margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+    gap: 2%;
+}
+.latestmovie .moviel
+{
+    width: 24%;
+    height: 250px;
+    /* border: 1px solid white; */
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: all 0.3s ease-in-out;
+}
+.moviel img
+{
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 100%;
+     transition: all 0.3s ease-in-out;
+}
+.moviel img:hover
+{
+    transform: scale(1.05);
+    border: 2px solid white;
+    border-radius: 10px;
+    filter: brightness(70%);
+}
+.moviel a
+{
+    text-decoration: none;
+    color: black;
+}
+.moviel a button
+{
+    width: 70px;
+    margin-top: 5%;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background: linear-gradient(135deg, #ff9800, #ff5722);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    margin-left: 3%;
+}
+#watch
+{
+    width: 70px;
+    margin-top:4%;
+}
+.moviel a button:hover
+{
+    transform: translateY(-2px) scale(1.03);
+    background: linear-gradient(135deg, #ff5722, #ff9800);
+    box-shadow: 0 6px 12px rgba(255, 152, 0, 0.25);
+}
+
+.notice-bar .close-btn {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 2px 10px;
+    border-radius: 50%;
+}
