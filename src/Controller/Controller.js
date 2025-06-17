@@ -7,17 +7,25 @@ exports.indexpage=(req,res)=>
         // console.log("yes"+req.session.adminname);
           res.render("AdminDashBoard.ejs",{filename:"no",childfilename:"no",msg:"",genre:[]});
     }
-    else if(req.session.username)
+    else if(req.session.username || req.session.regusername)
     {
-         res.render("userdashboard");
+         res.redirect("/userdashboard");
     }
     else{
-    res.render("index",{status:"login",msg:""});
+    res.render("index",{status:"login",msg:"",u:""});
     }
 }
 exports.indexreg=(req,res)=>
 {
-    res.render("index",{status:"signup",msg:""});
+    console.log(req.query.u);
+    if(req.session.regusername)
+     {
+            res.redirect("/userdashboard");
+     }
+     else
+     {//onlu user
+            res.render("index",{status:"signup",msg:"",u:""});
+     }
 }
 // exports.getadminreg=(req,res)=>
 // {
@@ -42,16 +50,16 @@ exports.loginuser=(req,res)=>
             {
                 // res.send("User Dashboard");
                 req.session.username=username;
-                res.render("userdashboard");//after login
+                res.redirect("/userdashboard");//after login
             }
         }
         else
         {
-            res.render("index",{status:"login",msg:result});
+            res.render("index",{status:"login",msg:result,u:""});
         }
     }
      catch (err) {
-        res.render("index", { status: "login", msg: err });  // For database error or invalid password
+        res.render("index", { status: "login", msg: err ,u:""});  // For database error or invalid password
     }
     }
     getuser();
@@ -63,26 +71,30 @@ exports.savereguser=(req,res)=>
         let r=await model.savereguser(username,email,password,role);
         if(r==="Sucess")
         {
-            res.render("index",{status:"signup", msg:"Registration Sucessfull"})
+            res.render("index",{status:"signup", msg:"Registration Sucessfull",u:username})
         }
         else
         {
-            res.render("index",{status:"signup", msg:r})
+            res.render("index",{status:"signup", msg:r,u:""})
         }
     } 
     getreg();
 }
 exports.userdashboard=(req,res)=>
 {
-    async function getdataforteaser(params) {
+    req.session.regusername=req.query.u;
+    // console.log(req.session.regusername);
+    async function getdataforteaser() {
         try
         {
             let r=await model.gettodata();
-            res.render("userdashboard",{topdata:r}); //before login
+            let latestr=await model.getlatest();
+            // console.log(latestr);
+            res.render("userdashboard",{topdata:r,latest:latestr,msg:""}); //before login
         }
         catch(err)
         {
-            res.render("userdashboard",{topdata:{poster_url :"./Image/sairat.png",trailer_url:"linkrel",Title:"Gum Hain Kisi Ke Pyar Main"}} );
+            res.render("userdashboard",{topdata:{poster_url :"./Image/sairat.png",trailer_url:"linkrel",Title:"Gum Hain Kisi Ke Pyar Main"},latest:[],msg:""} );
         }   
     }
     getdataforteaser();

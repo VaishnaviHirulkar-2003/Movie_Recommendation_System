@@ -139,4 +139,43 @@ exports.savereguserbyadmin = (req,res) => {
         }
         getuserinsert();
 };
+exports.viewmovies=async(req,res)=>
+{
+        try
+        {   
+        let r=await model.getmoviedata();
+        console.log(r);
+        res.render("AdminDashBoard.ejs",{filename:"moviesadmin.ejs",childfilename:"viewmovies.ejs",msg:"",movie:r})
+        }
+        catch(err)
+        {
+            res.render("AdminDashBoard.ejs",{filename:"moviesadmin.ejs",childfilename:"viewmovies.ejs",msg:"something went wrong",movie:[]})
+        }
+};
 
+//for viewuserpage to render and data
+exports.viewuserpagead=async(req,res)=>
+{
+    try
+    {
+        let r=await model.viewuser();
+        res.render("AdminDashBoard.ejs",{filename:"useradmin.ejs",childfilename:"viewuser.ejs",msg:"",user:r})
+    }
+    catch(err)
+    {
+        res.render("AdminDashBoard.ejs",{filename:"useradmin.ejs",childfilename:"viewuser.ejs",msg:"something went wrong",user:[]})
+    }
+};
+
+exports.logoutapi=(req,res)=>
+{
+    req.session.destroy((err) => {
+    if (err) {
+        console.log("Error destroying session:", err);
+        res.status(500).send("Could not log out.");
+    } else {
+       res.render("index",{status:"login",msg:"",u:""});; // or wherever you want to redirect after logout
+    }
+    });
+
+}
