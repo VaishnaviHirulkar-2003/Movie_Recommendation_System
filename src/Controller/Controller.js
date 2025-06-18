@@ -90,11 +90,11 @@ exports.userdashboard=(req,res)=>
             let r=await model.gettodata();
             let latestr=await model.getlatest();
             // console.log(latestr);
-            res.render("userdashboard",{topdata:r,latest:latestr,msg:""}); //before login
+            res.render("userdashboard",{topdata:r,latest:latestr,msg:"",module:"home"}); //before login
         }
         catch(err)
         {
-            res.render("userdashboard",{topdata:{poster_url :"./Image/sairat.png",trailer_url:"linkrel",Title:"Gum Hain Kisi Ke Pyar Main"},latest:[],msg:""} );
+            res.render("userdashboard",{topdata:{poster_url :"./Image/sairat.png",trailer_url:"linkrel",Title:"Gum Hain Kisi Ke Pyar Main"},latest:[],msg:"",module:"home"} );
         }   
     }
     getdataforteaser();

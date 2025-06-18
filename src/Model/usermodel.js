@@ -43,3 +43,21 @@ exports.addwatchlist=(mid,user)=>
         });
     })
 };
+
+exports.savedmovies=(username,u)=>
+{
+    return new Promise((resolve,reject)=>
+    {
+            con.query("select mi.title,mi.poster_url,mi.trailer_url,mi.full_movie_url from users u inner join watchlist m inner join movies mi on mi.movie_id=m.movie_id  where u.username=? or username=?",[username,u],(err,result)=>
+            {
+                if(err)
+                {
+                    reject(err);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            });
+    });
+}
