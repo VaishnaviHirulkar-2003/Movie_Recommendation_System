@@ -92,3 +92,22 @@ exports.getlatest=()=>
       })
   });
 }
+
+exports.getmarathimovie=()=>
+{
+  return new Promise((resolve,reject)=>
+  {
+      con.query("Select * from movies where language=?",["marathi"],(err,result)=>
+      {
+          if(err)
+          {
+            console.log(err);
+            reject(err);
+          }
+          else
+          {
+            resolve(result);
+          }
+      });
+  });
+}

@@ -1,0 +1,23 @@
+<!-- views/searchresults.ejs -->
+<div class="search-results-container" style="margin-top: -40px;">
+  <div class="search-wrapper" style="display: flex; flex-wrap: wrap; gap: 20px; padding: 10px;">
+    <% if (latest.length > 0) { %>
+      <% latest.forEach((l) => { %>
+        <div class="moviel" id="movie-<%= l.movie_id %>" style="width: 250px; margin-bottom: 3%;">
+          <img src="<%= l.poster_url %>">
+          <a href="<%= l.trailer_url %>" target="_blank">
+            <span style="color:#FFD700; font-size:20px;">▶</span>
+          </a>
+          <a href="#"><button onclick="addToWatchlist('<%= l.movie_id %>')">
+            <i class="fas fa-plus"></i> Add
+          </button></a>
+          <a href="<%= l.full_movie_url %>" target="_blank">
+            <button id="watch"><i class="fas fa-play-circle"></i>Play</button>
+          </a>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <h3>No matching Result found.</h3>
+    <% } %>
+  </div>
+</div>

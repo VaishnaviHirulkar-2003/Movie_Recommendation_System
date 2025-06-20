@@ -24,6 +24,18 @@ router.get("/logoutapi",ctrl.logoutapi);
 router.get("/viewadmin",ctrl.viewadmin);
 router.get("/Deleteapi",ctrl.deleteadminfile);
 router.post("/deleteadminapi",ctrl.deleteadmin);
+router.get("/getmoviedatabyadmintoview",ctrl.getmoviedatabyadmintoview);
+router.get("/deletemoviebyId",ctrl.deletemoviebyId);
 
 
+//delete use or handle user
+
+router.get("/deleteuser",ctrl.deleteuser);
+
+//to view particular profile after click on view button
+
+router.get("/viewProfileparticular",ctrl.viewProfileparticular);
+
+//to view the particular movies of the user watchlist
+router.get("/watchlist",ctrl.watchlist);
 module.exports=router;

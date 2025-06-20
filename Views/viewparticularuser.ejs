@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Cards</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    body {
+      background: #121212;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      color: #eee;
+    }
+
+    .containeru {
+      max-width: 1200px;
+      margin: 40px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    .user-card {
+      background: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.2s ease;
+    }
+
+    .user-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 20px rgba(89, 166, 255, 0.2);
+    }
+
+    .user-card h3 {
+      margin: 0;
+      font-size: 20px;
+      color: #59a6ff;
+    }
+
+    .user-info {
+      font-size: 14px;
+      color: #ccc;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .user-info i {
+      color: #59a6ff;
+      width: 18px;
+    }
+
+    .watchlist {
+      margin-top: 10px;
+      background: #2c2c2c;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: #ddd;
+      border-left: 4px solid #59a6ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="containeru">
+    <% if (user.length > 0) { %>
+      <% user.forEach((u) => { %>
+        <div class="user-card">
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <img src="/Image/MainLogo.png" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #59a6ff;">
+    <h3 style="margin: 0;"><i class="fas fa-user"></i> <%= u.username %>'s  &nbsp;Profile</h3>
+  </div>
+
+  <div class="user-info"><i class="fas fa-envelope"></i> <%= u.email %></div>
+  <div class="user-info"><i class="fas fa-calendar-plus"></i> Created: <%= u.created_at %></div>
+  <div class="user-info"><i class="fas fa-calendar-check"></i> Updated: <%= u.updated_at %></div>
+
+  <div class="watchlist" style="display: flex; justify-content: space-between; align-items: center;">
+    <span><strong>Number Of Watched Video:</strong> <%= u.watchlist || "None" %></span>
+    <a href="/admin/watchlist?id=<%=u.user_id%>" style="background: #C2C2C2; color: black; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: 700;">See Watchlist</a>
+  </div>
+
+
+        </div>
+      <% }); %>
+    <% } else { %>
+      <p style="text-align:center; font-size:18px;">No users found.</p>
+    <% } %>
+  </div>
+</body>
+</html>

@@ -2,7 +2,7 @@ const { resource } = require("../app");
 let con=require("../Config/db");
 let bcrypt=require("bcrypt");
 
-exports.addmovie = (title, desc, date, dir, lang, country, rup, rev, time, img, url, genre_id) => {
+exports.addmovie = (title, desc, date, dir, lang, country, rup, rev, time, img, url, genre_id,movie) => {
   return new Promise((resolve, reject) => {
 
     // Step 1: Get the genre name using genre_id
@@ -24,10 +24,10 @@ exports.addmovie = (title, desc, date, dir, lang, country, rup, rev, time, img, 
         INSERT INTO movies (
           title, description, release_date, genre,
           director, language, country, budget,
-          revenue, runtime, poster_url, trailer_url, genre_id
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+          revenue, runtime, poster_url, trailer_url, genre_id,full_movie_url
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)`;
 
-      const values = [title, desc, date, genre, dir, lang, country, rup, rev, time, img, url, genre_id];
+      const values = [title, desc, date, genre, dir, lang, country, rup, rev, time, img, url, genre_id,movie];
 
       con.query(query, values, (err, insertResult) => {
         if (err) {
@@ -249,3 +249,113 @@ exports.deleteadmin = (username, password) => {
   });
 };
 
+//to fecth paricular movi
+exports.getmoviedatabyid=(id)=>
+{
+  return new Promise((resolve,reject)=>
+  {
+      con.query("select * from movies where movie_id=?",[id],(err,result)=>
+      {
+          if(err)
+          {
+            reject("err");
+          }
+          else
+          {
+            resolve(result[0]);
+          }
+      });
+  })
+}
+
+//to delete the movie
+exports.deleteMovie=(movie_id)=>
+{
+    return new Promise((resolve,reject)=>
+    {
+      con.query("delete from movies where movie_id=?",[movie_id],(err,result)=>
+      {
+        if(err)
+        {
+          reject(err);
+        }
+        else
+        {
+          resolve("sucesss");
+        }
+      })
+    })
+}
+exports.deleteuserByid=(id)=>
+{
+  return new Promise((resolve,reject)=>
+  {
+      con.query("delete from users where user_id=?",[id],(err,result)=>
+      {
+          if(err)
+          {
+            reject(err);
+          }
+          else
+          {
+            resolve("sucess");
+          }
+      });
+  });
+}
+
+//to view partcoluar user profile
+
+exports.viewProfile=(id)=>
+{
+  return new Promise((resolve,reject)=>
+  {
+    let q=`SELECT 
+    u.user_id,
+    u.username,
+    u.email,
+    u.password,
+    u.role,
+    TIME(u.created_at) AS created_at,
+    Time(u.updated_at)as updated_at,
+    COUNT(w.user_id) AS watchlist
+FROM users u
+LEFT JOIN watchlist w ON u.user_id = w.user_id
+GROUP BY u.user_id
+HAVING u.user_id = ?;`
+      con.query(q,[id],(err,result)=>
+      {
+          if(err)
+          {
+            reject("err");
+          }
+          else
+          {
+            resolve(result);
+          }
+      });
+  });
+}
+
+//to see user watchlist
+
+exports.watchdata=(id)=>
+{
+  return new Promise((resolve,reject)=>
+  {
+    console.log(id);
+    let q=`select m.*,u.user_id from  movies m inner join watchlist w on w.movie_id=m.movie_id inner join users u on u.user_id=w.user_id where u.user_id=?`
+      con.query(q,[id],(err,result)=>
+      {
+          if(err)
+          {
+            reject(err);
+          }
+          else
+          {
+            resolve({result,id});
+          }
+          
+      });
+  });
+}
