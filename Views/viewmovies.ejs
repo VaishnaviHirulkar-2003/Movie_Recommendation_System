@@ -8,126 +8,165 @@
 
   <style>
     body {
-  /* background: #121212; */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  color: #eee;
-}
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      color: #eee;
+    }
+    .moviecon {
+      max-width: 1100px;
+      margin: auto;
+      background: black;
+      padding: 25px;
+      border-radius: 10px;
+      border: 1px solid #333;
+      margin-top: 7%;
+      
+    }
+    .search-form {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .search-form input[type="text"] {
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background: #2c2c2c;
+      color: #eee;
+      font-size: 14px;
+      width: 250px;
+    }
 
-.moviecon {
-  max-width: 1100px;
-  margin: auto;
-  background: #1e1e1e;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-  border: 1px solid #333;
-  margin-top: 7%;
-}
+    .search-form input[type="text"]::placeholder {
+      color: #aaa;
+    }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
+    .search-form button {
+      padding: 10px 15px;
+      background-color: #ec570c;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
-thead tr {
-  background: #2c2c2c;
-  color: #f1f1f1;
-  font-weight: 700;
-  text-transform: uppercase;
-}
+    .search-form button:hover {
+      background-color: #e98d50;
+      transform: scale(1.05);
+    }
 
-th, td {
-  padding: 12px 18px;
-  text-align: center;
-  border-bottom: 1px solid #333;
-  font-size: 14px;
-}
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
 
-tbody tr:hover {
-  background: #333;
-  cursor: pointer;
-}
+    thead tr {
+      background: #2c2c2c;
+      color: #f1f1f1;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
 
-td a.view-link {
-  color: #59a6ff;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
+    th, td {
+      padding: 12px 18px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+      font-size: 14px;
+    }
 
-td a.view-link:hover {
-  color: #a0cfff;
-}
+    tbody tr:hover {
+      background: #333;
+      cursor: pointer;
+    }
 
-td a button {
-  background: #2c2c2c;
-  border: 1px solid #444;
-  color: #bbb;
-  padding: 7px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
+    td a.view-link {
+      color: #f37900;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
 
-td a button:hover {
-  background: #59a6ff;
-  border-color: #59a6ff;
-  color: #fff;
-  transform: scale(1.05);
-}
+    td a.view-link:hover {
+      color: red;
+    }
 
-td a button i.fa-trash-alt {
-  color: #ff6b6b;
-}
+    td a button {
+      background: #2c2c2c;
+      border: 1px solid #444;
+      color: #bbb;
+      padding: 7px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
 
-td a button i.fa-pen-to-square {
-  color: #59a6ff;
-}
+    td a button:hover {
+      background: #b4a285;
+      color: #fff;
+      transform: scale(1.05);
+    }
 
-/* Pagination */
-.pagination {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-}
+    td a button i.fa-trash-alt {
+      color: #f47a08;
+    }
 
-.pagination a {
-  padding: 9px 15px;
-  background: #2c2c2c;
-  border-radius: 6px;
-  border: 1px solid #444;
-  color: #bbb;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background-color 0.2s ease, color 0.2s ease;
-  user-select: none;
-}
+    td a button i.fa-pen-to-square {
+      color: #f97d01;
+    }
 
-.pagination a:hover {
-  background: #59a6ff;
-  border-color: #59a6ff;
-  color: #fff;
-}
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
 
-.pagination a.active {
-  background: #59a6ff;
-  border-color: #59a6ff;
-  color: #fff;
-  font-weight: 700;
-  cursor: default;
-}
+    .pagination a {
+      padding: 9px 15px;
+      background: #2c2c2c;
+      border-radius: 6px;
+      border: 1px solid #444;
+      color: #bbb;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      user-select: none;
+    }
 
+    .pagination a:hover {
+      color: #fff;
+    }
+
+    .pagination a.active {
+      background: #551212;
+      border-color: #8b6464;
+      color: #fff;
+      font-weight: 700;
+      cursor: default;
+    }
   </style>
 </head>
 <body>
   <div class="moviecon">
+    
+    <!-- 🔍 Search Form -->
+    <form action="/admin/searchmovie" method="GET" class="search-form">
+      <input type="text" name="query" placeholder="Search by title or director..." required>
+      <button type="submit"><i class="fas fa-search"></i> Search</button>
+    </form>
+
+    <!-- 🎬 Movie Table -->
     <table>
       <thead>
         <tr>
@@ -153,20 +192,20 @@ td a button i.fa-pen-to-square {
       </tbody>
     </table>
 
-    <!-- Pagination Controls -->
+    <!-- 📄 Pagination -->
     <div class="pagination">
-  <% if (currentPage > 1) { %>
-    <a href="?page=<%= currentPage - 1 %>">&laquo;</a>
-  <% } %>
+      <% if (currentPage > 1) { %>
+        <a href="?page=<%= currentPage - 1 %>">&laquo;</a>
+      <% } %>
 
-  <% for(let i = 1; i <= totalPages; i++) { %>
-    <a href="?page=<%= i %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
-  <% } %>
+      <% for(let i = 1; i <= totalPages; i++) { %>
+        <a href="?page=<%= i %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+      <% } %>
 
-  <% if (currentPage < totalPages) { %>
-    <a href="?page=<%= currentPage + 1 %>">&raquo;</a>
-  <% } %>
-</div>
+      <% if (currentPage < totalPages) { %>
+        <a href="?page=<%= currentPage + 1 %>">&raquo;</a>
+      <% } %>
+    </div>
   </div>
 </body>
 </html>
