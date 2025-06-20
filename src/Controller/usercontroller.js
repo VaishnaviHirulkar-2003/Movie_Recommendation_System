@@ -51,3 +51,17 @@ exports.savedmovies = async (req, res) => {
 };
 
 
+//to search data
+exports.search = async (req, res) => {
+  try {
+    const data = req.query.name;
+    const search = await usermodel.getsearch(data);
+    console.log(search);
+    res.render("SerachResult.ejs", { latest: search });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error loading search results");
+  }
+};
+
+

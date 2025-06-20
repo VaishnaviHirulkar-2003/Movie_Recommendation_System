@@ -3,109 +3,129 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Styled Table</title>
+  <title>User Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      color: #eee;
+    }
+
     .moviecon {
-      width: 150%;
-      margin-left: -150px;
-      height: 450px;
-      overflow: auto;
-      margin-top: 0px;
-      padding: 10px;
-      padding-top: 0px;
-      background: #fefefe;
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-                  rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-                  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-      transition: all 0.3s ease-in-out;
-      color: #222;
-      border-radius: 12px;
+      max-width: 1100px;
+      margin: auto;
+      background: #1e1e1e;
+      /* padding: 25px; */
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      border: 1px solid #333;
+      margin-top: 7%;
+      /* border: 1px solid white; */
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      border: 2px solid #ccc;
-      border-radius: 12px;
-      overflow: hidden;
-      background-color: white;
+    }
+
+    thead tr {
+      background: #2c2c2c;
+      color: #f1f1f1;
+      font-weight: 700;
+      text-transform: uppercase;
     }
 
     th, td {
-      padding: 14px 18px;
+      padding: 12px 18px;
       text-align: center;
-      vertical-align: middle;
-      font-size: 15px;
-      color: black;
-      border:2px double black;
+      border-bottom: 1px solid #333;
+      font-size: 14px;
     }
 
-    th {
-      background: #f1f1f1;
-      font-weight: 600;
-      text-transform: uppercase;
-      background-color: #ff9800;
-       background: linear-gradient(135deg, #ff9800, #e68900);
-         color: #ffffff;
-    }
-
-    tr:nth-child(even) {
-      background-color: #fafafa;
-      transition: all 0.4s ease-in-out;
+    tbody tr:hover {
+      background: #333;
       cursor: pointer;
     }
 
-    tr:nth-child(odd) {
-      background-color: #ffffff;
-          transition: all 0.4s ease-in-out;
-          cursor: pointer;
-    }
-
-    tr:hover {
-      background-color:#ff9800;
-    }
-
-    td img {
-      height: 95px;
-      width: 95px;
-      border-radius: 6px;
-      padding: 4px;
-      background-color: #f7f7f7;
-      border: 1px solid #ddd;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-      filter: brightness(0.93) contrast(0.9);
-      transition: transform 0.2s ease, filter 0.3s ease;
-    }
-
-    td img:hover {
-      transform: scale(1.03);
-      filter: brightness(1) contrast(1);
-    }
-
-    td a {
+    td a.view-link {
+      color: #59a6ff;
+      font-weight: 600;
       text-decoration: none;
+      transition: color 0.2s ease;
     }
 
+    td a.view-link:hover {
+      color: #a0cfff;
+    }
+    td a
+    {
+      text-decoration: none;
+      color: #59a6ff;
+    }
     td a button {
+      background: #2c2c2c;
+      border: 1px solid #444;
+      color: #bbb;
+      padding: 7px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s ease;
       display: flex;
       align-items: center;
-      gap: 8px;
-      background-color: #ff9800;
-      color: white;
-      border: none;
-      padding: 7px 12px;
-      font-size: 14px;
-      font-weight: 500;
-      border-radius: 6px;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(255, 152, 0, 0.3);
-      transition: all 0.3s ease;
+      justify-content: center;
+      gap: 6px;
     }
 
     td a button:hover {
-      background-color: #e68900;
+      background: #59a6ff;
+      border-color: #59a6ff;
+      color: #fff;
       transform: scale(1.05);
-      box-shadow: 0 5px 12px rgba(255, 152, 0, 0.5);
+    }
+
+    td a button i.fa-trash-alt {
+      color: #ff6b6b;
+    }
+
+    td a button i.fa-pen-to-square {
+      color: #59a6ff;
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .pagination a {
+      padding: 9px 15px;
+      background: #2c2c2c;
+      border-radius: 6px;
+      border: 1px solid #444;
+      color: #bbb;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      user-select: none;
+    }
+
+    .pagination a:hover {
+      background: #59a6ff;
+      border-color: #59a6ff;
+      color: #fff;
+    }
+
+    .pagination a.active {
+      background: #59a6ff;
+      border-color: #59a6ff;
+      color: #fff;
+      font-weight: 700;
+      cursor: default;
     }
   </style>
 </head>
@@ -117,28 +137,58 @@
           <th>Sr</th>
           <th>Username</th>
           <th>Email</th>
-          <th>Created At</th>
-          <th>Updated At</th>
+          <!-- <th>Created</th> -->
+          <!-- <th>Updated</th> -->
+           <th>View</th>
+          <th>Delete</th>
+          <th>Update</th>
         </tr>
       </thead>
       <tbody>
         <% if (user.length > 0) { %>
           <% user.forEach((u, index) => { %>
             <tr>
-              <td><%= index + 1 %></td>
+              <td><%= (currentPage - 1) * perPage + index + 1 %></td>
               <td><%= u.username %></td>
               <td><%= u.email %></td>
-              <td><%= u.created_time %></td>
-              <td><%= u.updated_time %></td>
+              <!-- <td><%= u.created_time %></td>
+              <td><%= u.updated_time %></td> -->
+              <td><a href="/admin/viewProfileparticular?id=<%=u.user_id%>">View</a></td>
+              <td>
+                <a href="/admin/deleteuser?id=<%= u.user_id %>">
+                  <button><i class="fas fa-trash-alt"></i></button>
+                </a>
+              </td>
+              <td>
+                <a href="/admin/edituser?id=<%= u.user_id %>">
+                  <button><i class="fas fa-pen-to-square"></i></button>
+                </a>
+              </td>
             </tr>
           <% }); %>
         <% } else { %>
           <tr>
-            <td colspan="5"><strong>No Data Available</strong></td>
+            <td colspan="7"><strong>No Data Available</strong></td>
           </tr>
         <% } %>
       </tbody>
     </table>
+
+    <!-- Pagination -->
+   <div class="pagination">
+  <% if (currentPage > 1) { %>
+    <a href="?page=<%= currentPage - 1 %>">&laquo;</a>
+  <% } %>
+
+  <% for(let i = 1; i <= totalPages; i++) { %>
+    <a href="?page=<%= i %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+  <% } %>
+
+  <% if (currentPage < totalPages) { %>
+    <a href="?page=<%= currentPage + 1 %>">&raquo;</a>
+  <% } %>
+</div>
+
   </div>
 </body>
 </html>

@@ -1,248 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <title>V&DMovieMate User Portal</title>
-  <link rel="stylesheet" href="/Css/Userdashboard.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-</head>
-
-<!-- NOTICE BAR -->
-<div class="notice-bar" id="noticeBar">
-  <button class="close-btn" onclick="document.getElementById('noticeBar').style.display='none';">✖</button>
-  <div class="notice-title">📢 Important Update: New Entertainment Filters
-    Available!</div>
-  <div class="notice-message">We've added filters for international cinema,
-    indie gems, and trending thrillers. Go to Your Choice and explore
-    now!</div>
-  <div class="notice-meta">Welcome To The User Portal And Enjoy Your time
-  </div>
-</div>
-
-<!-- MAIN USER DASHBOARD -->
-<div class="maindivuser">
-  <div class="menudiv">
-    <div class="logo">
-      <img src="/Image/MainLogo.png" alt="Logo">
-    </div>
-
-    <div class="option" id="menuOptions">
-      <a href="/" id="first"><i class="fa-solid fa-house"></i>&nbsp;&nbsp;Home</a>
-      <a href="#"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;&nbsp;Search</a>
-      <a href="#"><i class="fa-solid fa-tv"></i>&nbsp;&nbsp;Shows</a>
-      <a href="#"><i class="fa-solid fa-clapperboard"></i>&nbsp;&nbsp;Movie</a>
-      <a href="#"><i class="fa-solid fa-trophy"></i>&nbsp;&nbsp;Sports</a>
-      <a href="#"><i class="fa-solid fa-video"></i>&nbsp;&nbsp;Sparks</a>
-      <a href="#"><i class="fa-solid fa-puzzle-piece"></i>&nbsp;&nbsp;Section</a>
-      <a href="/user/savedmovies"><i class="fa-solid fa-bookmark"></i>&nbsp;&nbsp;Saved</a>
-      <a href="#"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;Profile</a>
-    </div>
-  </div>
-
-  <div class="vediodiv">
-    <!-- Your video or main content -->
-    <div class="teaser">
-      <div class="timg">
-        <img src="<%=topdata.poster_url %>" alt="Movie Poster">
-      </div>
-      <div class="tinfo">
-        <h2>
-          <%=topdata.Title%>
-        </h2>
-        <h4>Comming Soon</h4>
-        <h3>All Your Favourate Movies and Shows Only On V&DMovieMate</h3>
-        <a href=<%=topdata.trailer_url%>
-          target="_blank"><button>Teaser</button></a>
+  <head>
+    <meta charset="UTF-8">
+    <title>V&DMovieMate User Portal</title>
+    <link rel="stylesheet" href="/Css/Userdashboard.css">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  </head>
+  <body>
+    <!-- NOTICE BAR -->
+    <div class="notice-bar" id="noticeBar">
+      <button class="close-btn"
+        onclick="document.getElementById('noticeBar').style.display='none';">✖</button>
+      <div class="notice-title">📢 Important Update: New Entertainment Filters
+        Available!</div>
+      <div class="notice-message">We've added filters for international cinema,
+        indie gems, and trending thrillers. Go to Your Choice and explore
+        now!</div>
+      <div class="notice-meta">Welcome To The User Portal And Enjoy Your time
       </div>
     </div>
-  </div>
 
-  <div class="simpleall">
-    <div class="trailer">
-      <video class="vidclick active"
-        src="/Teaser/Sita Ramam Official Trailer _ In Hindi _ 18th November _ DisneyPlus Hotstar (1).mp4" autoplay
-        playsinline></video>
-      <video class="vidclick"
-        src="/Teaser/Mannat Har Khushi Paane Ki NEW SERIAL PROMO Clash Between Mom & Daughter _ Ayesha Singh.mp4"
-        autoplay playsinline></video>
-      <video class="vidclick" src="/Teaser/KGF Trailer Hindi _ Yash _ Srinidhi _ 21st Dec 2018.mp4" autoplay
-        playsinline></video>
-      <button id="unmuteBtn">🔊 Unmute</button>
-    </div>
-  </div>
+    <!-- MAIN USER DASHBOARD -->
+    <div class="maindivuser">
+      <div class="menudiv">
+        <div class="logo">
+          <img src="/Image/MainLogo.png" alt="Logo">
+        </div>
 
-  <% if (module==="home" ) { %>
-    <div class="latestrelease">
-      <h3>Latest Releases</h3>
-      <div class="latestmovie">
-        <% if (latest.length> 0) { %>
+        <div class="option" id="menuOptions">
+          <a href="/userdashboard" id="first"><i
+              class="fa-solid fa-house"></i>&nbsp;&nbsp;Home</a>
+          <a href="#" onclick="getsearchbar()"><i
+              class="fa-solid fa-magnifying-glass"></i>&nbsp;&nbsp;Search</a>
+          <a href="#" onclick="getdata('drama')"><i class="fa-solid fa-tv"></i>&nbsp;&nbsp;Shows</a>
+          <!-- <a href="#"><i
+              class="fa-solid fa-clapperboard"></i>&nbsp;&nbsp;Movie</a> -->
+          <a href="#"><i class="fa-solid fa-trophy"></i>&nbsp;&nbsp;Sports</a>
+          <a href="#"><i class="fa-solid fa-video"></i>&nbsp;&nbsp;Sparks</a>
+          <a href="#"><i
+              class="fa-solid fa-puzzle-piece"></i>&nbsp;&nbsp;Section</a>
+          <a href="/user/savedmovies"><i
+              class="fa-solid fa-bookmark"></i>&nbsp;&nbsp;Saved</a>
+          <a href="#"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;Profile</a>
+        </div>
+      </div>
+      <div class="search" id="s"></div>
+      <div class="vediodiv">
+        <!-- Your video or main content -->
+        <div class="teaser">
+          <div class="timg">
+            <img src="<%=topdata.poster_url %>" alt="Movie Poster">
+          </div>
+          <div class="tinfo">
+            <h2>
+              <%=topdata.Title%>
+            </h2>
+            <h4>Comming Soon</h4>
+            <h3>All Your Favourate Movies and Shows Only On V&DMovieMate</h3>
+            <a href="<%=topdata.trailer_url%>"
+              target="_blank"><button>Teaser</button></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="simpleall" id="sim1">
+        <div class="trailer">
+          <video class="vidclick active"
+            src="/Teaser/Sita Ramam Official Trailer _ In Hindi _ 18th November _ DisneyPlus Hotstar (1).mp4"
+            autoplay
+            playsinline></video>
+          <video class="vidclick"
+            src="/Teaser/Mannat Har Khushi Paane Ki NEW SERIAL PROMO Clash Between Mom & Daughter _ Ayesha Singh.mp4"
+            autoplay playsinline></video>
+          <video class="vidclick"
+            src="/Teaser/KGF Trailer Hindi _ Yash _ Srinidhi _ 21st Dec 2018.mp4"
+            autoplay
+            playsinline></video>
+          <button id="unmuteBtn">🔊 Unmute</button>
+        </div>
+      </div>
+
+      <% if (module==="home" ) { %>
+      <div class="latestrelease" id="latest">  <!--after search we have to use this-->
+        <h3 id="h1">Latest Releases</h3>
+        <div class="latestmovie" id="lmovies">
+          <% if (latest.length> 0) { %>
           <% latest.forEach((l)=> { %>
-            <div class="moviel" id="movie-<%= l.movie_id %>">
-              <img src="<%= l.poster_url %>">
-              <a href="<%= l.trailer_url %>" target="_blank" id="first"><span
-                  style="color:#FFD700; font-size:24px;">▶</span></a>
-              <a href="#"><button onclick="addToWatchlist('<%= l.movie_id %>')">
-                  <i class="fas fa-plus"></i> Add
-                </button></a>
-              <span class="added-msg" style="display:none; color:green;">Added
-                ✔️</span>
-              <a href="<%= l.full_movie_url %>" target="_blank"><button id="watch"><i
-                    class="fas fa-play-circle"></i>Play</button></a>
-            </div>
-            <% }) %>
-              <% } else { %>
-                <h1>No Movies Release Yet</h1>
-                <% } %>
-      </div>
-  <div class="slider-container">
-  <h3>Our Special Movies ❤️</h3>
-  <div class="slider-track" id="sliderTrack">
-    <div class="slide-item"> <a href="#" ><img src="https://upload.wikimedia.org/wikipedia/en/9/95/Kesari_Chapter_2.jpg" alt="Movie 1"></a><button class="play-icon">▶</button></div>
-    <div class="slide-item"><a href="#"><img src="https://m.media-amazon.com/images/M/MV5BMTYzOTE2NjkxN15BMl5BanBnXkFtZTgwMDgzMTg0MzE@._V1_.jpg" alt="Movie 2"></a> <button class="play-icon">▶</button></div>
-    <div class="slide-item"><a href="#" ><img src="http://upload.wikimedia.org/wikipedia/en/3/32/Dil_Bechara_film_poster.jpg" alt="Movie 3"></a><button class="play-icon">▶</button></div>
-    <div class="slide-item"><a href="#" ><img src="https://4.bp.blogspot.com/-xe834VfFe5I/V8A6BhHSgyI/AAAAAAAAJdY/Fj5cJkcmuHUTOizFlmEjcNtQmNZTmbRmwCLcB/s1600/Hum%2BSaath%2BSaath%2BHain%2BDialogues%2BPoster.jpg" alt="Movie 4"></a><button class="play-icon">▶</button></div>
-    <div class="slide-item"><a href="#"><img src="https://www.itl.cat/pngfile/big/91-916153_vivah-movie-poster.jpg" alt="Movie 5"></a><button class="play-icon">▶</button></div>
-     <div class="slide-item"><a href="#"><img src="https://4.bp.blogspot.com/-py2z4TFWUMQ/Wdy_BpR1MHI/AAAAAAAAl34/VTNMr7EPxccHivdDccx2LkmVPxyC3P6tgCEwYBhgL/s1600/Golmaal-Again-First-Look-Poster-6.jpg" alt="Movie 1"></a><button class="play-icon">▶</button></div>
-    <div class="slide-item"><a href="#"><img src="https://stat2.bollywoodhungama.in/wp-content/uploads/2020/05/34-2-4.jpg" alt="Movie 2"></a><button class="play-icon">▶</button></div>
-    <div class="slide-item"><a href="#"><img src="https://i.pinimg.com/originals/75/44/a8/7544a8c400cd94c30fdb8467f055200f.jpg" alt="Movie 3"></a><button class="play-icon">▶</button></div>
-    <div class="slide-item"><a href="#"><img src="https://static.india.com/wp-content/uploads/2022/11/315727830_118751787703550_4147354325212302800_n.jpg" alt="Movie 4"></a><button class="play-icon">▶</button></div>
-    <div class="slide-item"><a href="#"><img src="http://upload.wikimedia.org/wikipedia/en/thumb/e/e5/Atrangi_Re_film_poster.jpg/220px-Atrangi_Re_film_poster.jpg" alt="Movie 5"></a><button class="play-icon">▶</button></div>
+          <div class="moviel" id="movie-<%= l.movie_id %>">
+            <img src="<%= l.poster_url %>">
+            <a href="<%= l.trailer_url %>" target="_blank" id="first"><span
+                style="color:#FFD700; font-size:20px;">▶</span></a>
+            <a href="#"><button onclick="addToWatchlist('<%= l.movie_id %>')">
+                <i class="fas fa-plus"></i> Add
+              </button></a>
+            <span class="added-msg" style="display:none; color:green;">Added
+              ✔️</span>
+            <a href="<%= l.full_movie_url %>" target="_blank"><button
+                id="watch"><i
+                  class="fas fa-play-circle"></i>Play</button></a>
+          </div>
+          <% }) %>
+          <% } else { %>
+          <!-- <h1>No Movies Release Yet</h1> -->
+          <% } %>
+        </div>
+        <div class="slider-container" id="slider">
+          <h3>Our Special Movies ❤️</h3>
+          <div class="slider-track" id="sliderTrack">
+            <div class="slide-item">
+                <img
+                src="https://upload.wikimedia.org/wikipedia/en/9/95/Kesari_Chapter_2.jpg"
+                alt="Movie 1" onclick="getdesc('https://upload.wikimedia.org/wikipedia/en/9/95/Kesari_Chapter_2.jpg', 'Kesari Chapter-2','https://www.youtube.com/watch?v=r-7g08INMSI')"><button class="play-icon">▶</button></div>
+            <div class="slide-item">
+                <img
+                src="https://m.media-amazon.com/images/M/MV5BMTYzOTE2NjkxN15BMl5BanBnXkFtZTgwMDgzMTg0MzE@._V1_.jpg"
+                alt="Movie 2" onclick="getdesc('https://m.media-amazon.com/images/M/MV5BMTYzOTE2NjkxN15BMl5BanBnXkFtZTgwMDgzMTg0MzE@._V1_.jpg','Pk','https://www.youtube.com/watch?v=0iNw-oKBFBc')"><button class="play-icon">▶</button></div>
+            <div class="slide-item">
+                <img 
+                src="http://upload.wikimedia.org/wikipedia/en/3/32/Dil_Bechara_film_poster.jpg"
+                alt="Movie 3" onclick="getdesc('http://upload.wikimedia.org/wikipedia/en/3/32/Dil_Bechara_film_poster.jpg','Dil Bechara','https://www.youtube.com/watch?v=V5y7fSSWr4Y')"><button class="play-icon">▶</button></div>
+            <div class="slide-item">
+                <img
+                src="https://4.bp.blogspot.com/-xe834VfFe5I/V8A6BhHSgyI/AAAAAAAAJdY/Fj5cJkcmuHUTOizFlmEjcNtQmNZTmbRmwCLcB/s1600/Hum%2BSaath%2BSaath%2BHain%2BDialogues%2BPoster.jpg"
+                alt="Movie 4" onclick="getdesc('https://4.bp.blogspot.com/-xe834VfFe5I/V8A6BhHSgyI/AAAAAAAAJdY/Fj5cJkcmuHUTOizFlmEjcNtQmNZTmbRmwCLcB/s1600/Hum%2BSaath%2BSaath%2BHain%2BDialogues%2BPoster.jpg','Hum Saath-Saath Hain','https://www.youtube.com/watch?v=Rgi_x7zq9IM&list=PL0CaUqi81mPnhBMFz2SuVWK3TfL_5Bckw')"><button class="play-icon">▶</button></div>
+            <div class="slide-item">
+                <img
+                src="https://www.itl.cat/pngfile/big/91-916153_vivah-movie-poster.jpg"
+                alt="Movie 5" onclick="getdesc('https://www.itl.cat/pngfile/big/91-916153_vivah-movie-poster.jpg','Vivah','https://www.youtube.com/watch?v=JKsmzHl7dUw&t=6s')"><button class="play-icon">▶</button></div>
+            <div class="slide-item">
+                <img
+                src="https://4.bp.blogspot.com/-py2z4TFWUMQ/Wdy_BpR1MHI/AAAAAAAAl34/VTNMr7EPxccHivdDccx2LkmVPxyC3P6tgCEwYBhgL/s1600/Golmaal-Again-First-Look-Poster-6.jpg"
+                alt="Movie 1" onclick="getdesc('https://4.bp.blogspot.com/-py2z4TFWUMQ/Wdy_BpR1MHI/AAAAAAAAl34/VTNMr7EPxccHivdDccx2LkmVPxyC3P6tgCEwYBhgL/s1600/Golmaal-Again-First-Look-Poster-6.jpg','Golmaal Again','https://www.youtube.com/watch?v=0v4Hbf0nl6E')"><button class="play-icon">▶</button></div>
+            <div class="slide-item">
+                <img
+                src="https://stat2.bollywoodhungama.in/wp-content/uploads/2020/05/34-2-4.jpg"
+                alt="Movie 2" onclick="getdesc('https://stat2.bollywoodhungama.in/wp-content/uploads/2020/05/34-2-4.jpg','Ek Vivah Aisa bhii','https://www.youtube.com/watch?v=WXsR_8YKlyM&list=PL07CAB929B077D241')"><button class="play-icon">▶</button></div>
+            <div class="slide-item">
+                <img
+                src="https://i.pinimg.com/originals/75/44/a8/7544a8c400cd94c30fdb8467f055200f.jpg"
+                alt="Movie 3" onclick="getdesc('https://i.pinimg.com/originals/75/44/a8/7544a8c400cd94c30fdb8467f055200f.jpg','Hero No 1','https://www.youtube.com/watch?v=ixzh4Dcg8KU')"><button class="play-icon">▶</button></div>
+            <div class="slide-item">
+                <img
+                src="https://static.india.com/wp-content/uploads/2022/11/315727830_118751787703550_4147354325212302800_n.jpg"
+                alt="Movie 4" onclick="getdesc('https://static.india.com/wp-content/uploads/2022/11/315727830_118751787703550_4147354325212302800_n.jpg','Govinda naam mera','https://www.youtube.com/watch?v=JD6ULW9--aw')"><button class="play-icon">▶</button></div>
+            <div class="slide-item">
+                <img
+                src="http://upload.wikimedia.org/wikipedia/en/thumb/e/e5/Atrangi_Re_film_poster.jpg/220px-Atrangi_Re_film_poster.jpg"
+                alt="Movie 5" onclick="getdesc('http://upload.wikimedia.org/wikipedia/en/thumb/e/e5/Atrangi_Re_film_poster.jpg/220px-Atrangi_Re_film_poster.jpg','Atrangi Re','https://archive.org/details/atrangi-re-2021-dual-audio')"><button class="play-icon">▶</button></div>
 
-    <div class="slide-item"><a href="#"><img src="https://image.tmdb.org/t/p/original/mVnBibFJsVP5kQWvTjrx15qi0Na.jpg" alt="Movie 1"></a><button class="play-icon">▶</button></div>
-    <div class="slide-item"><a href="#"><img src="https://c8.alamy.com/comp/2C3Y1J8/gunjan-saxena-the-kargil-girl-us-poster-janhvi-kapoor-as-gunjan-saxena-2020-netflix-courtesy-everett-collection-2C3Y1J8.jpg" alt="Movie 2"></a><button class="play-icon">▶</button></div>
-    <div class="slide-item"><a href="#"><img src="https://www.filmtv.it/imgbank/GALLERYXL/R201707/neerja09.jpg" alt="Movie 3"></a><button class="play-icon">▶</button></div>
-    <div class="slide-item"><a href="#"><img src="https://media5.bollywoodhungama.in/wp-content/uploads/2021/09/Shiddat-5.jpeg" alt="Movie 4"></a><button class="play-icon">▶</button></div>
-    <div class="slide-item"><a href="#"><img src="https://m.media-amazon.com/images/M/MV5BZTM4ODJlZmMtZGVmMS00ZDFjLWFkYzgtYjk3NDNhZDg3NjNlXkEyXkFqcGdeQXVyNzkxOTEyMjI@._V1_.jpg" alt="Movie 5"></a><button class="play-icon">▶</button></div>
+            <div class="slide-item">
+                <img
+                src="https://image.tmdb.org/t/p/original/mVnBibFJsVP5kQWvTjrx15qi0Na.jpg"
+                alt="Movie 1" onclick="getdesc('https://image.tmdb.org/t/p/original/mVnBibFJsVP5kQWvTjrx15qi0Na.jpg','GoobLuck Jerry','https://archive.org/details/good-luck-jerry-2022_202212')"><button class="play-icon">▶</button></div>
+            <div class="slide-item">
+                <img
+                src="https://c8.alamy.com/comp/2C3Y1J8/gunjan-saxena-the-kargil-girl-us-poster-janhvi-kapoor-as-gunjan-saxena-2020-netflix-courtesy-everett-collection-2C3Y1J8.jpg"
+                alt="Movie 2" onclick="getdesc('https://c8.alamy.com/comp/2C3Y1J8/gunjan-saxena-the-kargil-girl-us-poster-janhvi-kapoor-as-gunjan-saxena-2020-netflix-courtesy-everett-collection-2C3Y1J8.jpg','gunjan Saxena','https://www.youtube.com/watch?v=rtGIq9Xjnrw')"><button class="play-icon">▶</button></div>
+            <div class="slide-item">
+                <img
+                src="https://www.filmtv.it/imgbank/GALLERYXL/R201707/neerja09.jpg"
+                alt="Movie 3" onclick="getdesc('https://www.filmtv.it/imgbank/GALLERYXL/R201707/neerja09.jpg','Neerja','https://www.youtube.com/watch?v=0nqGUetu3r0')"><button class="play-icon">▶</button></div>
+            <div class="slide-item">
+                <img
+                src="https://media5.bollywoodhungama.in/wp-content/uploads/2021/09/Shiddat-5.jpeg"
+                alt="Movie 4" onclick="getdesc('https://media5.bollywoodhungama.in/wp-content/uploads/2021/09/Shiddat-5.jpeg','Shiddat','https://archive.org/details/shiddat-2021-hindi.-untouched.-web.-dl.-720p.-avcx-264.-aac.-superhit-bollywood-_20240913')"><button class="play-icon">▶</button></div>
+            <div class="slide-item">
+                <img
+                src="https://m.media-amazon.com/images/M/MV5BZTM4ODJlZmMtZGVmMS00ZDFjLWFkYzgtYjk3NDNhZDg3NjNlXkEyXkFqcGdeQXVyNzkxOTEyMjI@._V1_.jpg"
+                alt="Movie 5" onclick="getdesc('https://m.media-amazon.com/images/M/MV5BZTM4ODJlZmMtZGVmMS00ZDFjLWFkYzgtYjk3NDNhZDg3NjNlXkEyXkFqcGdeQXVyNzkxOTEyMjI@._V1_.jpg','Super 30','https://archive.org/details/super-30-2019-hindi')"><button class="play-icon">▶</button></div>
+          </div>
+        </div>
+      </div>
+      
+
+      <!-- content the from input img -->
+<div class="imgplay" style="display: none;" id="imgplay">
+  <div class="img" id="iadd">
+      <!-- add by ajax -->
+       <img src="" id="imgt">
+  </div>
+  <div class="desc">
+    <h4 style="margin: 10px 0 5px;" id="moviename"></h4>
+    <a href="" id="movie"><button>View Movie</button></a>
+    <!-- <a href="#" id="addwatchlist"><button>+ Add</button></a> -->
+
   </div>
 </div>
-
-
+    <!--formarathi movies-->
+    <div class="marathisection" id="marathi">
+    <%-include("marathidiv.ejs")%>
     </div>
-</div>
-<% } else if(module==="saved" ) { %>
 
-  <%if(latest.length>0)
+    <!---recommnadation div-->
+    </div>
+    <% } else if(module==="saved" ) { %>
+
+    <%if(latest.length>0)
     {
     %>
     <div class="userwatch">
       <h3>Your Watchlist&nbsp;<span style="color:red;">&#10084;</span></h3>
       <div class="watch">
         <%latest.forEach((item)=>
-          {
-          %>
-          <div class="card">
-            <img src="<%=item.poster_url%>">
-            <a href="<%=item.full_movie_url%>" target="_blank" id="first"><span
-                style="color:#F19103; font-size:24px;">▶</span></a>
+        {
+        %>
+        <div class="card">
+          <img src="<%=item.poster_url%>">
+          <a href="<%=item.full_movie_url%>" target="_blank" id="first"><span
+              style="color:#F19103; font-size:24px;">▶</span></a>
 
-            <h5>Movie Name: <%=item.title%>
-            </h5>
+          <h5>Movie Name: <%=item.title%>
+          </h5>
 
-            <div class="button">
-              <a href="#"><button>Remove</button></a>
-              <a href="#"><button>Trailer</button></a>
-            </div>
+          <div class="button">
+            <a href="#"><button>Remove</button></a>
+            <a href="#"><button>Trailer</button></a>
           </div>
-          <% }); %>
+        </div>
+        <% }); %>
       </div>
     </div>
     <% } else { %>
-      <h3>Nothing in your Watchlist</h3>
-      <% }%>
-        <% }%>
+    <h3>Nothing in your Watchlist</h3>
+    <% }%>
+    <% }%>
 
-          <!--code for the some common movies-->
-
-          <script>
-            const videos = document.querySelectorAll(".trailer .vidclick");
-            let current = 0;
-
-            function playCurrentVideo() {
-              if (videos.length === 0) return;
-
-              videos.forEach((video, index) => {
-                video.pause();
-                video.style.opacity = 0;
-              });
-
-              const currentVideo = videos[current];
-              currentVideo.currentTime = 0;
-              currentVideo.muted = true;
-              currentVideo.style.opacity = 1;
-              currentVideo.play().catch(e => console.log(e));
-
-              currentVideo.onended = () => {
-                current = (current + 1) % videos.length;
-                playCurrentVideo();
-              };
-            }
-
-            // Start with the first video
-            playCurrentVideo();
-
-            // Unmute on click
-            videos.forEach(video => {
-              video.addEventListener("click", function () {
-                videos.forEach(v => v.muted = true);
-                this.muted = false;
-                this.play();
-              });
-            });
-
-            document.getElementById("unmuteBtn").addEventListener("click", () => {
-              const currentVideo = videos[current];
-              videos.forEach(v => v.muted = true);
-              currentVideo.muted = false;
-              currentVideo.play();
-            });
-
-
-            function addToWatchlist(movieId) {
-              fetch(`/user/addwatchlist?mid=${movieId}`)
-                .then(response => response.json())
-                .then(data => {
-                  if (data.success) {
-                    const movieDiv = document.getElementById(`movie-${movieId}`);
-                    const msgSpan = movieDiv.querySelector(".added-msg");
-
-                    msgSpan.style.display = "inline"; // Show message
-
-                    // Hide it after 2 seconds
-                    setTimeout(() => {
-                      msgSpan.style.display = "none";
-                    }, 2000);
-                  } else {
-                    alert(data.message);
-                  }
-                })
-                .catch(err => console.error("Error adding to watchlist:", err));
-            }
-
-  const track = document.getElementById("sliderTrack");
-
-  function scrollSlider() {
-    const firstItem = track.firstElementChild;
-    const itemWidth = firstItem.offsetWidth + 20; // include margin (gap)
-    
-    track.style.transition = "transform 0.5s linear";
-    track.style.transform = `translateX(-${itemWidth}px)`;
-
-    // After animation, reset position and move first to end
-    setTimeout(() => {
-      track.style.transition = "none";
-      track.appendChild(firstItem);
-      track.style.transform = "translateX(0)";
-    }, 3000);
-  }
-
-  // Start auto-scrolling
-  setInterval(scrollSlider, 2000); // speed: every 1.5 seconds
-          </script>
-          </body>
-
+    <!--code for the some common movies-->
+      <script src="/Js/Userdashboard.js"></script>
+      <script src="./Imageajax.js"></script>
+    </body>
 </html>

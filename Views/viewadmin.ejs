@@ -3,54 +3,127 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin Table</title>
+  <title>Admin Users Table</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    .admin {
-      padding: 20px;
-      font-family: Arial, sans-serif;
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      color: #eee;
+      background: #121212;
+      overflow: hidden;
     }
 
- table {
+    .admin-container {
+      width: 100;
+      margin: auto;
+      background: #1e1e1e;
+      /* padding: 25px; */
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      /* border: 1px solid white; */
+      margin-top: 5%;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #59a6ff;
+    }
+
+    table {
       width: 100%;
       border-collapse: collapse;
-      border: 2px solid #ccc;
-      border-radius: 12px;
-      overflow: hidden;
-      background-color: white;
-    }
-    th, td {
-      padding: 14px 18px;
-      text-align: center;
-      vertical-align: middle;
-      font-size: 15px;
-      color: black;
-      border:2px double black;
-    }
-    th {
-      background: #f1f1f1;
-      font-weight: 600;
-      text-transform: uppercase;
-      background-color: #ff9800;
-       background: linear-gradient(135deg, #ff9800, #e68900);
-         color: #ffffff;
     }
 
-    thead {
-      background-color: #e8d2d2;
+    thead tr {
+      background: #2c2c2c;
+      color: #f1f1f1;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    th, td {
+      padding: 12px 18px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+      font-size: 14px;
     }
 
     tbody tr:hover {
-      background-color: #f9f9f9;
+      background: #333;
+      cursor: pointer;
     }
 
-    td[colspan="5"] {
-      text-align: center;
-      color: #777;
+    td a.button-link {
+      background: #2c2c2c;
+      border: 1px solid #444;
+      color: #bbb;
+      padding: 7px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
+
+    td a.button-link:hover {
+      background: #59a6ff;
+      border-color: #59a6ff;
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    td a.button-link i.fa-trash-alt {
+      color: #ff6b6b;
+    }
+
+    td a.button-link i.fa-pen-to-square {
+      color: #59a6ff;
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .pagination a {
+      padding: 9px 15px;
+      background: #2c2c2c;
+      border-radius: 6px;
+      border: 1px solid #444;
+      color: #bbb;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      user-select: none;
+    }
+
+    .pagination a:hover {
+      background: #59a6ff;
+      border-color: #59a6ff;
+      color: #fff;
+    }
+
+    .pagination a.active {
+      background: #59a6ff;
+      border-color: #59a6ff;
+      color: #fff;
+      font-weight: 700;
+      cursor: default;
+    }
+
   </style>
 </head>
 <body>
-  <div class="admin">
+  <div class="admin-container">
     <h2>Admin Users</h2>
     <table>
       <thead>
@@ -59,10 +132,11 @@
           <th>Username</th>
           <th>Email</th>
           <th>Created At</th>
-          <th>Updated At</th>
+          <!-- <th>Updated At</th> -->
+          <th>Actions</th>
         </tr>
       </thead>
-     <tbody>
+      <tbody>
         <% if (admin.length > 0) { %>
           <% admin.forEach((u, index) => { %>
             <tr>
@@ -70,16 +144,35 @@
               <td><%= u.username %></td>
               <td><%= u.email %></td>
               <td><%= u.created_time %></td>
-              <td><%= u.updated_time %></td>
+              <!-- <td><%= u.updated_time %></td> -->
+              <td>
+                <!-- <a href="/admin/edit?id=<%= u.user_id %>" class="button-link"><i class="fas fa-pen-to-square"></i></a> -->
+                <a href="/admin/delete?id=<%= u.user_id %>" class="button-link"><i class="fas fa-trash-alt"></i></a>
+              </td>
             </tr>
-          <% }); %>
+          <% }) %>
         <% } else { %>
           <tr>
-            <td colspan="5"><strong>No Data Available</strong></td>
+            <td colspan="6"><strong>No Admins Found</strong></td>
           </tr>
         <% } %>
       </tbody>
     </table>
+
+    <!-- Optional Pagination -->
+    <div class="pagination">
+      <% if (currentPage > 1) { %>
+        <a href="?page=<%= currentPage - 1 %>">&laquo;</a>
+      <% } %>
+
+      <% for(let i = 1; i <= totalPages; i++) { %>
+        <a href="?page=<%= i %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+      <% } %>
+
+      <% if (currentPage < totalPages) { %>
+        <a href="?page=<%= currentPage + 1 %>">&raquo;</a>
+      <% } %>
+    </div>
   </div>
 </body>
 </html>
