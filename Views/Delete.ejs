@@ -34,12 +34,20 @@
       font-weight: 600;
       color:orangered; /* Tomato red for attention */
     }
+<<<<<<< Updated upstream
 
     form {
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
+=======
+   form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; 
+}
+>>>>>>> Stashed changes
 
     input[type="text"],
     input[type="password"] {
@@ -81,11 +89,20 @@
   <div class="delete-container">
     <div class="delete-title">Delete Admin</div>
 
+<<<<<<< Updated upstream
     <form action="/admin/deleteadminapi" method="POST" onsubmit="return deleteadmin()">
       <input type="text" name="username" placeholder="Enter the username" required>
       <input type="password" name="password" placeholder="Enter the password" required>
       <button type="submit">Delete</button>
       <h4><%= msg %></h4>
+=======
+    <form action="/admin/deleteadminapi" method="POST" >
+      <input type="text" name="username" value="" placeholder="Enter the username">
+    <input type="password" name="password" value="" placeholder="Enter the password">
+
+      <button type="submit" onclick="return deleteadmin()">Delete</button>
+      <h4><%=msg%></h4>
+>>>>>>> Stashed changes
     </form>
   </div>
 

@@ -27,17 +27,13 @@ exports.indexreg=(req,res)=>
             res.render("index",{status:"signup",msg:"",u:""});
      }
 }
-// exports.getadminreg=(req,res)=>
-// {
-//     res.render("index",{status:"adminLogin"})
-// }
+
 exports.loginuser=(req,res)=>
 {
     let{username,password,role}=req.body;
     async function getuser() {
         try{
         let result=await model.loginuser(username,password,role);
-        // console.log(result)
         if(result==="Success")
         {
             if(role==="Admin")

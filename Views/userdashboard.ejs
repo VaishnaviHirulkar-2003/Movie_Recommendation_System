@@ -234,4 +234,37 @@
       <script src="./Imageajax.js"></script>
           </body>
 
+<<<<<<< Updated upstream
 </html>
+=======
+document.getElementById("unmuteBtn").addEventListener("click", () => {
+  const currentVideo = videos[current];
+  videos.forEach(v => v.muted = true);
+  currentVideo.muted = false;
+  currentVideo.play();
+});
+
+function addToWatchlist(movieId) {
+  fetch(`/user/addwatchlist?mid=${movieId}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        const movieDiv = document.getElementById(`movie-${movieId}`);
+        const msgSpan = movieDiv.querySelector(".added-msg");
+
+        msgSpan.style.display = "inline"; // Show message
+
+        // Hide it after 2 seconds
+        setTimeout(() => {
+          msgSpan.style.display = "none";
+        }, 2000);
+      } else {
+        alert(data.message);
+      }
+    })
+    .catch(err => console.error("Error adding to watchlist:", err));
+}
+</script>
+</body>
+</html>
+>>>>>>> Stashed changes

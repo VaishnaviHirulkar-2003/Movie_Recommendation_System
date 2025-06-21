@@ -6,7 +6,6 @@
 
 body {
   font-family: Arial, sans-serif;
-   /* background-image: url("./image/Background.png"); */
   min-height: 100vh;
   filter: brightness(0.7);
 }
@@ -110,7 +109,6 @@ body {
   min-width: 160px;
   z-index: 1;
 }
-
 .dropdown a,
 .dropdown button {
   display: block;

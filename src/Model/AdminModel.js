@@ -88,32 +88,6 @@ exports.updateadmin = (userid, username, password, npass, email) => {
   });
 };
 
-// exports.saveregadmin = (username, email, oldpass,password, role,uname) => {
-//   console.log("model");
-//   return new Promise((resolve, reject) =>
-//      {
-//     con.query("select * from users where username = ?", [uname], (err, result) => {
-//       if (err) return reject("Invalid Credentials");
-//       if (result.length > 0) {
-//         const existingUser = result[0];
-//         const match = bcrypt.compareSync(oldpass, existingUser.password);
-//         if (match) 
-//           {
-//                const hashedPassword = bcrypt.hashSync(password, 8);
-//                 const insertQuery = "insert into users (username, email, password, role) values(?, ?, ?, ?)";
-//                       con.query(insertQuery, [username, email, hashedPassword, role], (err,result1)=> {
-//                         if (err) {
-//                                      console.log("Insert error:", err);
-//                                       return resolve("Username Already Exits");
-//                                  }
-//                                  console.log("done");
-//                     return resolve("Admin Added Sucesfully");
-//                 });
-//           }
-//       }
-//     });
-//   });
-// };
 
 exports.saveregadmin = (username, email, oldpass, password, role, uname) => {
   console.log("model");
@@ -228,9 +202,7 @@ exports.deleteadmin = (username, password) => {
         if (!password || !hashedPassword) {
           return reject("Invalid data");
         }
-
         const compare = bcrypt.compareSync(password, hashedPassword);
-
         if (compare) {
           con.query("DELETE FROM users WHERE username = ?",[username],(err, r) => {
               if (err) {
@@ -244,8 +216,7 @@ exports.deleteadmin = (username, password) => {
         else {
           return reject("Password does not match");
         }
-      }
-    );
+      });
   });
 };
 
