@@ -272,8 +272,6 @@ catch(err){
 }
 }
 
-
-<<<<<<< Updated upstream
 //for feecthing particular data of the movie
 exports.getmoviedatabyadmintoview=async(req,res)=>
 {
