@@ -4,75 +4,84 @@
   <meta charset="UTF-8">
   <title>Add User</title>
   <style>
-    /* body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #ffecd2, #fcb69f);
-      margin: 0;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    } */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('/your-dashboard-bg.jpg') no-repeat center center/cover;
+    color: #fff;
+  }
 
-    .user-form-container {
-      background: #fff;
-      padding: 30px 40px;
-      border-radius: 12px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-      max-width: 400px;
-      width: 100%;
-      /* border: 1px solid #000; */
-      margin: auto;
-      margin-top: 1%;
-    }
+  .user-form-container {
+    background: rgba(20, 20, 20, 0.9);
+    padding: 20px 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    max-width: 400px;
+    width: 100%;
+    margin: 0% auto;
+    backdrop-filter: blur(6px);
+  }
 
-    .user-form-container h2 {
-      text-align: center;
-      margin-bottom: 25px;
-      color: #333;
-    }
+  .user-form-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #fff;
+    background: linear-gradient(to right, #0f91ff, #0984e3);
+    padding: 10px;
+    border-radius: 8px;
+  }
 
-    .user-form-container input,
-    .user-form-container select {
-      width: 100%;
-      padding: 12px;
-      margin: 12px 0;
-      border: 1px solid black;
-      border-radius: 8px;
-      font-size: 14px;
-      transition: 0.3s ease;
-    }
+  .user-form-container input,
+  .user-form-container select {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid #444;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #121212;
+    color: #eee;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
 
-    .user-form-container input:focus,
-    .user-form-container select:focus {
-      border-color: #ff9800;
-      outline: none;
-    }
+  .user-form-container input:focus,
+  .user-form-container select:focus {
+    border-color: #0f91ff;
+    background-color: #1e1e1e;
+    outline: none;
+  }
 
-    .user-form-container button {
-      width: 100%;
-      padding: 12px;
-      background-color: #ff9800;
-      border: none;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
+  .user-form-container input::placeholder {
+    color: #aaa;
+  }
 
-    .user-form-container button:hover {
-      background-color: #e08900;
-      transform: scale(1.02);
-    }
-    .user-form-container h4
-    {
-      text-align: center;
-      color: #ff9800;
-    }
-  </style>
+  .user-form-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #0f91ff;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+
+  .user-form-container button:hover {
+    background-color: #0d75d8;
+    transform: scale(1.02);
+  }
+
+  .user-form-container h4 {
+    text-align: center;
+    color: #44ff88;
+    font-weight: 500;
+    margin-top: 12px;
+  }
+</style>
+
 </head>
 <body>
 
@@ -83,7 +92,7 @@
       <input type="email" name="email" placeholder="Enter Email" required>
       <input type="password" name="password" placeholder="Enter Password" required>
       <input type="role" name="role" value="User" readonly>
-      <button type="submit">Add User</button>
+      <button type="submit" style=" background: linear-gradient(to right, #2600ff, #ff5722);">Add User</button>
 
       <h4><%=msg%></h4>
     </form>

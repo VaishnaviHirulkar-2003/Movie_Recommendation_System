@@ -1,108 +1,9 @@
-// function getdesc(img, name,movie) {
-//     let parent = document.getElementById("imgplay");
-//     let imgtag = document.getElementById("imgt");
-//     let moviename = document.getElementById("moviename");
-
-//     // Set image and movie name
-//     imgtag.setAttribute("src", img);
-//     moviename.innerText = name;
-//     // Show the popup box
-//     parent.style.display = "block";
-
-//     let amovie=document.getElementById("movie");
-//     amovie.setAttribute("href",movie);
-//     amovie.setAttribute("target","_blank")
-// }
-
-// //for search page
-
-// function getsearchbar() {
-// //   alert("hello");
-  
-//   const s = document.getElementById("s");
-//   s.innerHTML="";
-//   if (!s) {
-//     console.error("Element with ID 's' not found!");
-//     return;
-//   }
-
-//   const h = document.createElement("input");
-//   h.setAttribute("type", "text");
-//   h.setAttribute("placeholder", "Search...");
-
-//   // Styling the input
-//   s.style.width="60%";
-//   s.style.margin="auto";
-//   s.style.marginTop="1%"
-//   s.style.marginBottom="1%";
-//  h.style.width = "100%";
-//   h.style.height = "30px";
-//   h.style.marginLeft = "10%";
-//   h.style.padding = "5px";
-//   h.style.border = "1px solid #ccc";
-//   h.style.borderRadius = "5px";
-//   h.style.backgroundColor="#1111"
-//   h.style.color="white";
-//   // Attach event listener correctly
-//   h.addEventListener("input", function () {
-//     getdata(this.value);  // pass value to your getdata function
-//   });
-//   s.appendChild(h);
-// }
-
-
-// //for marathi movie slider
-
-
-//   const container = document.getElementById("moviediv");
-
-//   function scrollLeft() {
-//     container.scrollBy({
-//       left: -300,
-//       behavior: "smooth"
-//     });
-//   }
-
-//   function scrollRight() {
-//     container.scrollBy({
-//       left: 300,
-//       behavior: "smooth"
-//     });
-//   }
-
-
-
-// //for search movie
-
-// function getdata(str) {
-//     console.log(document.getElementById("marathi"));
-
-//     // Clear content of all relevant sections
-//     document.getElementById("sim1").innerHTML = "";
-//     document.getElementById("latest").innerHTML = "";
-//     document.getElementById("slider").innerHTML = "";
-
-//     const c = document.getElementById("marathi");
-
-//     if (c) {
-//         c.innerHTML = ""; // Clear marathi section
-//         // You can optionally show a loading message
-//         // container.innerHTML = "<p>Loading...</p>";
-
-//         // Now you can fetch new data via AJAX (optional)
-//         // fetch(`/search?query=${str}`).then(...);
-//     } else {
-//         console.error("Element with ID 'marathi' not found");
-//     }
-// }
-
-
 // ========= POPUP DESC FUNCTION ========= //
 function getdesc(img, name, movie) {
-  let parent = document.getElementById("imgplay");
-  let imgtag = document.getElementById("imgt");
-  let moviename = document.getElementById("moviename");
-  let amovie = document.getElementById("movie");
+  const parent = document.getElementById("imgplay");
+  const imgtag = document.getElementById("imgt");
+  const moviename = document.getElementById("moviename");
+  const amovie = document.getElementById("movie");
 
   if (parent && imgtag && moviename && amovie) {
     imgtag.setAttribute("src", img);
@@ -110,20 +11,15 @@ function getdesc(img, name, movie) {
     parent.style.display = "block";
     amovie.setAttribute("href", movie);
     amovie.setAttribute("target", "_blank");
-  } else {
-    console.error("Some elements not found for popup!");
   }
 }
 
 // ========= DYNAMIC SEARCH BAR ========= //
 function getsearchbar() {
   const s = document.getElementById("s");
-  if (!s) {
-    console.error("Element with ID 's' not found!");
-    return;
-  }
+  if (!s) return;
 
-  s.innerHTML = ""; // Clear previous input (if any)
+  s.innerHTML = "";
 
   const h = document.createElement("input");
   h.setAttribute("type", "text");
@@ -142,7 +38,6 @@ function getsearchbar() {
   s.style.marginTop = "1%";
   s.style.marginBottom = "1%";
 
-  // Live input listener
   h.addEventListener("input", function () {
     getdata(this.value);
   });
@@ -150,22 +45,13 @@ function getsearchbar() {
   s.appendChild(h);
 }
 
-// ========= MARATHI MOVIE SLIDER BUTTONS ========= //
-// NOTE: Don't redeclare `const container` if this script runs multiple times.
-
-document.addEventListener("DOMContentLoaded", () => {
+// ========= SLIDER INIT ========= //
+function reinitializeUI() {
   const container = document.getElementById("moviediv");
-
-  if (!container) {
-    console.error("Slider container #moviediv not found!");
-    return;
-  }
-
-  // Attach only if buttons exist
   const leftBtn = document.getElementById("scroll-left");
   const rightBtn = document.getElementById("scroll-right");
 
-  if (leftBtn && rightBtn) {
+  if (container && leftBtn && rightBtn) {
     leftBtn.addEventListener("click", () => {
       container.scrollBy({ left: -300, behavior: "smooth" });
     });
@@ -174,64 +60,119 @@ document.addEventListener("DOMContentLoaded", () => {
       container.scrollBy({ left: 300, behavior: "smooth" });
     });
   }
+}
+
+// ========= ORIGINAL STORAGE ========= //
+let originalSim1Content = "";
+let originalLatestContent = "";
+let originalLmoviesContent = "";
+let originalSliderContent = "";
+let originalMarathiContent = "";
+let originalH1Text = "";
+
+let originalStyles = {
+  h1: {},
+  latest: {},
+  lmovies: {},
+  marathi: {}
+};
+
+window.addEventListener("DOMContentLoaded", () => {
+  const sim1 = document.getElementById("sim1");
+  const latest = document.getElementById("latest");
+  const lmovies = document.getElementById("lmovies");
+  const marathi = document.getElementById("marathi");
+  const h1 = document.getElementById("h1");
+  const slider = document.getElementById("slider");
+
+  if (sim1) originalSim1Content = sim1.innerHTML;
+  if (latest) originalLatestContent = latest.innerHTML;
+  if (lmovies) originalLmoviesContent = lmovies.innerHTML;
+  if (slider) originalSliderContent = slider.outerHTML;
+  if (marathi) originalMarathiContent = marathi.innerHTML;
+
+  if (h1) {
+    originalH1Text = h1.innerHTML;
+    originalStyles.h1 = { ...h1.style };
+  }
+  if (latest) originalStyles.latest = { ...latest.style };
+  if (lmovies) originalStyles.lmovies = { ...lmovies.style };
+  if (marathi) originalStyles.marathi = { ...marathi.style };
+
+  reinitializeUI();
 });
 
-
-//to restore the original data before clear
-
- let originalSim1Content = "";
-  let originalLatestContent = "";
-  let originalSliderContent = "";
-  let originalMarathiContent = "";
-
-  window.addEventListener("DOMContentLoaded", () => {
-    const sim1 = document.getElementById("sim1");
-    const latest = document.getElementById("latest");
-    const slider = document.getElementById("slider");
-    const marathi = document.getElementById("marathi");
-
-    if (sim1) originalSim1Content = sim1.innerHTML;
-    if (latest) originalLatestContent = latest.innerHTML;
-    if (slider) originalSliderContent = slider.innerHTML;
-    if (marathi) originalMarathiContent = marathi.innerHTML;
-  });
-
-
-// ========= CLEAR SECTIONS FOR SEARCH ========= //
+// ========= SEARCH & RESTORE ========= //
 function getdata(str) {
-  const lmovies = document.getElementById("lmovies"); // ✅ correct id
   const sim1 = document.getElementById("sim1");
-  const slider = document.getElementById("slider");
+  const latest = document.getElementById("latest");
   const marathi = document.getElementById("marathi");
+  const slider = document.getElementById("slider");
+  const lmovies = document.getElementById("lmovies");
+  const h1 = document.getElementById("h1");
 
-  if (!lmovies) {
-    console.error("Missing #lmovies container");
-    return;
-  }
+  if (!lmovies || !latest) return;
 
   if (str.trim() === "") {
-    // Restore original content
     if (sim1) sim1.innerHTML = originalSim1Content;
-    if (lmovies) lmovies.innerHTML = originalLatestContent;  // <-- optional
-    if (slider) slider.innerHTML = originalSliderContent;
-    if (marathi) marathi.innerHTML = originalMarathiContent;
+
+    // Restore slider
+    if (slider) {
+      const newSlider = document.createElement("div");
+      newSlider.innerHTML = originalSliderContent;
+      const parent = slider.parentNode;
+      if (parent) {
+        const replacedSlider = newSlider.firstElementChild;
+        parent.replaceChild(replacedSlider, slider);
+        replacedSlider.style.display = "block";
+        replacedSlider.style.height = "340px";
+      }
+    }
+
+    if (marathi) {
+      marathi.innerHTML = originalMarathiContent;
+      Object.assign(marathi.style, originalStyles.marathi);
+    }
+
+    if (lmovies) {
+      lmovies.innerHTML = originalLmoviesContent;
+      Object.assign(lmovies.style, originalStyles.lmovies);
+    }
+
+    if (latest) {
+      Object.assign(latest.style, originalStyles.latest);
+    }
+
+    if (h1) {
+      h1.innerHTML = originalH1Text;
+      Object.assign(h1.style, originalStyles.h1);
+    }
+
+    document.querySelectorAll(".search-wrapper, .search-result").forEach(el => el.remove());
+
+    reinitializeUI();
     return;
   }
 
-  // Clear only child containers
-  if (sim1) sim1.innerHTML = "";
-  if (slider) slider.innerHTML = "";
-  if (marathi) marathi.innerHTML = "";
-  document.getElementById("h1").innerHTML="Your Serach Movies";
-  document.getElementById("h1").style.marginTop="-70px";
-   document.getElementById("h1").style.marginBottom="5px";
-  document.getElementById("latest").style.marginTop="0px";
-  lmovies.innerHTML = ""; // only clear child!
-  // Load search results and inject into lmovies
+  // KEEP SLIDER VISIBLE
+  // if (slider) slider.style.display = "none"; ← REMOVED
+
+  if (marathi) marathi.style.display = "none";
+
+  if (h1) {
+    h1.innerHTML = "Your Favourite ❤️";
+    h1.style.marginTop = "0px";
+    h1.style.marginBottom = "10px";
+    h1.style.marginLeft = "10px";
+  }
+
   fetch(`/user/search?name=${encodeURIComponent(str)}`)
     .then(res => res.text())
     .then(html => {
-      lmovies.innerHTML = html;
+      if (lmovies) {
+        lmovies.innerHTML = html;
+        lmovies.style.display = "flex";
+      }
     })
-    .catch(err => console.error("Search load error:", err));
+    .catch(err => console.error("Search fetch error:", err));
 }

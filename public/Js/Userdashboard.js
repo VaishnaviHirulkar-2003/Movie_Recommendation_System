@@ -137,3 +137,77 @@ document.body.addEventListener("click", () => {
   startAutoScroll();
 });
 
+
+//for second slider
+
+// === ACTION MOVIES SCROLL (sliderTrack2) ===
+const track2 = document.getElementById("sliderTrack2");
+let scrollInterval2;
+let isPaused2 = false;
+
+function scrollSlider2() {
+  if (isPaused2) return;
+
+  const firstItem2 = track2.firstElementChild;
+  const itemWidth2 = firstItem2.offsetWidth + 20;
+
+  track2.style.transition = "transform 0.5s linear";
+  track2.style.transform = `translateX(-${itemWidth2}px)`;
+
+  setTimeout(() => {
+    track2.style.transition = "none";
+    track2.appendChild(firstItem2);
+    track2.style.transform = "translateX(0)";
+  }, 500);
+}
+
+function startAutoScroll2() {
+  stopAutoScroll2();
+  scrollInterval2 = setInterval(scrollSlider2, 2000);
+}
+
+function stopAutoScroll2() {
+  clearInterval(scrollInterval2);
+  scrollInterval2 = null;
+}
+
+startAutoScroll2();
+
+
+
+
+//for third
+
+const track3 = document.getElementById("sliderTrack3");
+let scrollInterval3;
+let isPaused3 = false;
+
+function scrollSlider3() {
+  if (isPaused3) return;
+
+  const lastItem = track3.lastElementChild;
+  const itemWidth = lastItem.offsetWidth + 20;
+
+  track3.insertBefore(lastItem, track3.firstElementChild); // Move last to first
+  track3.style.transition = "none";
+  track3.style.transform = `translateX(-${itemWidth}px)`;
+
+  setTimeout(() => {
+    track3.style.transition = "transform 0.5s linear";
+    track3.style.transform = `translateX(0)`;
+  }, 10); // Short delay to ensure browser registers the transform
+}
+
+
+function startAutoScroll3() {
+  stopAutoScroll3(); // clear previous interval if any
+  scrollInterval3 = setInterval(scrollSlider3, 2000);
+}
+
+function stopAutoScroll3() {
+  clearInterval(scrollInterval3);
+  scrollInterval3 = null;
+}
+
+// Start scrolling
+startAutoScroll3();

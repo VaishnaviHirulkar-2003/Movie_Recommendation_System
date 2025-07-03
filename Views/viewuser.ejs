@@ -21,7 +21,7 @@
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
       border: 1px solid #333;
-      margin-top: 7%;
+      margin-top: 3%;
       /* border: 1px solid white; */
     }
 
@@ -127,10 +127,23 @@
       font-weight: 700;
       cursor: default;
     }
+    .moviecon input {
+      width: 80%;
+      margin-left: 10%;
+      height: 30px;
+      border: 1px solid gray;
+      border-radius: 8px;
+      color: white;
+      background-color: black;
+      font-weight: 600;
+      margin-bottom: 2px;
+      margin-top: 5px;
+    }
   </style>
 </head>
 <body>
   <div class="moviecon">
+    <input type="text" name="username" value="" placeholder="Enter the Seach name" oninput="getsearchuser(this.value)">
     <table>
       <thead>
         <tr>
@@ -141,7 +154,7 @@
           <!-- <th>Updated</th> -->
            <th>View</th>
           <th>Delete</th>
-          <th>Update</th>
+          <!-- <th>Update</th> -->
         </tr>
       </thead>
       <tbody>
@@ -157,11 +170,6 @@
               <td>
                 <a href="/admin/deleteuser?id=<%= u.user_id %>">
                   <button><i class="fas fa-trash-alt"></i></button>
-                </a>
-              </td>
-              <td>
-                <a href="/admin/edituser?id=<%= u.user_id %>">
-                  <button><i class="fas fa-pen-to-square"></i></button>
                 </a>
               </td>
             </tr>
@@ -188,7 +196,29 @@
     <a href="?page=<%= currentPage + 1 %>">&raquo;</a>
   <% } %>
 </div>
-
   </div>
+
+  <script>
+    function getsearchuser(value) {  // not getsearcuser
+  const tbody = document.querySelector("tbody");
+  const pagination = document.querySelector(".pagination");
+
+  if (value.trim() === "") {
+    location.reload(); // Reload the original page with full data
+    return;
+  }
+
+  fetch(`/admin/searchuser?query=${encodeURIComponent(value)}`)
+    .then(res => res.text())
+    .then(html => {
+      tbody.innerHTML = html;
+      pagination.style.display = "none";
+    })
+    .catch(err => {
+      console.error("Search error:", err);
+    });
+}
+
+  </script>
 </body>
 </html>
