@@ -9,7 +9,6 @@ exports.moviespage=(req,res)=>
 }
 exports.addmoviepage=(req,res)=>
 {
-
     con.query("select * from genres",(err,result)=>
     {
          res.render("AdminDashBoard.ejs",{filename:"moviesadmin.ejs",childfilename:"addmoviesform.ejs",msg:"",genre:result})
@@ -208,6 +207,7 @@ exports.viewuserpagead = async (req, res) => {
   }
 };
 
+
 exports.logoutapi=(req,res)=>
 {
     req.session.destroy((err) => {
@@ -220,6 +220,7 @@ exports.logoutapi=(req,res)=>
     });
 
 }
+
 
 //view admin
 exports.viewadmin = async (req, res) => {
@@ -272,6 +273,7 @@ catch(err){
 }
 
 
+<<<<<<< Updated upstream
 //for feecthing particular data of the movie
 exports.getmoviedatabyadmintoview=async(req,res)=>
 {
@@ -368,4 +370,3 @@ exports.watchlist=async(req,res)=>
     }
 }
 
-//remaining

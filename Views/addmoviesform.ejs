@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Add Movie</title>
+<<<<<<< HEAD
 <style>
 body {
   margin: 0;
@@ -130,14 +131,124 @@ body {
   width: 100%;
   display: block;
 }
+=======
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      /* background: #121212; */
+      font-family: Arial, sans-serif;
+      color: white;
 
-</style>
+    }
 
+    .AddMovie {
+      max-width: 60%;
+      height: 65vh;
+      overflow-y: auto;
+      margin: auto;
+      margin-top: 2%;
+      padding: 20px;
+       background: black;
+      border-radius: 10px;
+      box-shadow: white;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+                  rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                  rgba(0, 0, 0, 0.12) 0px 4px 6px,
+                  rgba(0, 0, 0, 0.17) 0px 12px 13px,
+                  rgba(0, 0, 0, 0.09) 0px -3px 5px;
+      backdrop-filter: blur(2px);
+      text-align: center;
+    }
 
+    .AddMovie h2 {
+      font-size: 24px;
+      margin-bottom: 25px;
+      font-weight: 600;
+      color: rgb(205, 62, 10);
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .AddMovie label {
+      display: block;
+      margin-top: 10px;
+      text-align: left;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .AddMovie input[type="text"],
+    .AddMovie input[type="file"],
+    .AddMovie input[type="date"],
+    .AddMovie input[type="number"],
+    .AddMovie input[type="url"],
+    .AddMovie select,
+    .AddMovie textarea {
+      width: 100%;
+      padding: 12px 14px;
+      margin: 14px 0;
+      font-size: 15px;
+      border: 1px solid #444;
+      border-radius: 8px;
+      background-color: #1e1e1e;
+      color: white;
+      resize: none;
+      transition: border 0.3s ease, background 0.3s ease;
+    }
+
+    .AddMovie input::placeholder,
+    .AddMovie textarea::placeholder {
+      color: #f3eded;
+    }
+
+    .AddMovie input:focus,
+    .AddMovie textarea:focus,
+    .AddMovie select:focus {
+      border-color: rgb(255, 255, 255);
+      background-color: #2a2a2a;
+      outline: none;
+    }
+
+    .AddMovie textarea {
+      height: 100px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+>>>>>>> master
+
+    .AddMovie #button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #c44e05;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+<<<<<<< HEAD
+
+=======
+    .AddMovie #button:hover {
+      background-color: #e08900;
+      transform: scale(1.02);
+    }
+
+    .AddMovie h5 {
+      margin-top: 15px;
+      color: #f2f2f2;
+      font-weight: 500;
+    }
+  </style>
+>>>>>>> master
 </head>
 <body>
-
   <div class="AddMovie">
+<<<<<<< HEAD
   <h2>Add Movie</h2>
   <form action="/admin/addmovie" method="POST" enctype="multipart/form-data">
     <input type="text" placeholder="Enter Movie Title" name="title" required>
@@ -165,11 +276,37 @@ body {
     <!-- Trailer URL -->
     <input type="url"  placeholder="Enter Trailer Vedio URL" name="url">
     <input type="submit" value="Add Movie" id="button" style=" background: linear-gradient(to right, #2600ff, #ff5722);"></input>
+=======
+    <h2>Add Movie</h2>
+    <form action="/admin/addmovie" method="POST" enctype="multipart/form-data">
+      <input type="text" placeholder="Enter Movie Title" name="title" required>
+      <textarea placeholder="Enter Movie Description" name="desc"></textarea>
+      <input type="date" name="date">
 
-    <h5><%=msg%></h5>
-  </form>
-</div>
+      <select id="genreSelect" name="genre_id" onchange="setGenreName()" required>
+        <option value="">-- Choose Genre --</option>
+        <% genre.forEach(function(genre) { %>
+          <option value="<%=genre.genre_id%>"><%= genre.name %></option>
+        <% }); %>
+      </select>
+>>>>>>> master
 
+      <input type="text" placeholder="Director" name="dir">
+      <input type="text" placeholder="Language" name="lang">
+      <input type="text" placeholder="Country" name="country">
+      <input type="number" step="0.01" placeholder="Budget (₹)" name="rup">
+      <input type="number" step="0.01" placeholder="Revenue (₹)" name="rev">
+      <input type="number" placeholder="Runtime (in minutes)" name="time">
 
+      <label>Upload Poster Image:</label>
+      <input type="url" name="img" placeholder="Paste Poster Image URL" required>
+
+      <input type="url" placeholder="Enter Trailer Video URL" name="url">
+      <input type="url" placeholder="Enter the Movie URL" name="movie">
+
+      <input type="submit" value="Add Movie" id="button">
+      <h5><%=msg%></h5>
+    </form>
+  </div>
 </body>
 </html>

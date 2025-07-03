@@ -11,6 +11,7 @@
       margin: 0;
       color: #eee;
     }
+<<<<<<< HEAD
 
     .moviecon {
       max-width: 1100px;
@@ -131,13 +132,199 @@
       background-color: black;
       font-weight: 600;
       margin-bottom: 2px;
+=======
+    .moviecon {
+      max-width: 1100px;
+      margin: auto;
+      background: black;
+      padding: 25px;
+      border-radius: 10px;
+      border: 1px solid #333;
+      margin-top: 7%;
+      
+    }
+    .search-form {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .search-form input[type="text"] {
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background: #2c2c2c;
+      color: #eee;
+      font-size: 14px;
+      width: 250px;
+    }
+
+    .search-form input[type="text"]::placeholder {
+      color: #aaa;
+    }
+
+    .search-form button {
+      padding: 10px 15px;
+      background-color: #ec570c;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .search-form button:hover {
+      background-color: #e98d50;
+      transform: scale(1.05);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead tr {
+      background: #2c2c2c;
+      color: #f1f1f1;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    th, td {
+      padding: 12px 18px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+      font-size: 14px;
+    }
+
+    tbody tr:hover {
+      background: #333;
+      cursor: pointer;
+    }
+
+    td a.view-link {
+      color: #f37900;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    td a.view-link:hover {
+      color: red;
+    }
+
+    td a button {
+      background: #2c2c2c;
+      border: 1px solid #444;
+      color: #bbb;
+      padding: 7px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    td a button:hover {
+      background: #b4a285;
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    td a button i.fa-trash-alt {
+      color: #f47a08;
+    }
+
+    td a button i.fa-pen-to-square {
+      color: #f97d01;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .pagination a {
+      padding: 9px 15px;
+      background: #2c2c2c;
+      border-radius: 6px;
+      border: 1px solid #444;
+      color: #bbb;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      user-select: none;
+    }
+
+    .pagination a:hover {
+      color: #fff;
+    }
+
+    .pagination a.active {
+      background: #551212;
+      border-color: #8b6464;
+      color: #fff;
+      font-weight: 700;
+      cursor: default;
+>>>>>>> master
     }
   </style>
 </head>
 <body>
+<<<<<<< Updated upstream
   <div class="moviecon">
+<<<<<<< HEAD
     <input type="text" name="moviename" placeholder="Enter the Search Value" value="" oninput="getsearchmovie(this.value)">
     
+=======
+    
+    <!-- 🔍 Search Form -->
+    <form action="/admin/searchmovie" method="GET" class="search-form">
+      <input type="text" name="query" placeholder="Search by title or director..." required>
+      <button type="submit"><i class="fas fa-search"></i> Search</button>
+    </form>
+=======
+    <div class="moviecon">
+            <table>
+                <thead>
+                        <th>Sr</th>
+                        <th>Title</th>
+                        <th>Genre</th>
+                        <th>Poster</th>
+                        <th>Director</th>
+                        <th>Trailer</th>
+                        <th>Movie</th>
+                        <th>Delete</th>
+                        <th>Update</th>
+                </thead>
+                <tbody>
+                      <% movie.forEach((m, index) => { %>
+                                 <tr>
+                                    <td><%= index + 1 %></td>
+                                    <td><%= m.title %></td>
+                                    <td><%= m.genre%></td>
+                                    <td><img src="<%=m.poster_url%>" alt="Poster"></td>
+                                     <td><%= m.director %></td>
+                                    <td><a href="<%=m.trailer_url%>" target="_blank"><button>Teaser</button></a></td>
+                                    <td><a href="<%= m.full_movie_url %>" target="_blank"><button>Movie</button></a></td>
+                                    <td><a href="#"><button><i class="fas fa-trash-alt"></i></button></a></td>
+                                    <td><a href="#"><button style="background-color: green; color:yellow;"><i class="fas fa-pen-to-square"></i></button></a></td>
+                                </tr>
+                <% }); %>
+</tbody>
+>>>>>>> Stashed changes
+
+    <!-- 🎬 Movie Table -->
+>>>>>>> master
     <table>
       <thead>
         <tr>
@@ -163,8 +350,13 @@
       </tbody>
     </table>
 
+<<<<<<< HEAD
     <!-- Pagination Controls -->
     <div class="pagination" id="pagination">
+=======
+    <!-- 📄 Pagination -->
+    <div class="pagination">
+>>>>>>> master
       <% if (currentPage > 1) { %>
         <a href="?page=<%= currentPage - 1 %>">&laquo;</a>
       <% } %>
