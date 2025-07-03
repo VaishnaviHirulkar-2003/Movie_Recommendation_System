@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Special Marathi Movies</title>
+        <link rel="stylesheet" href="./Css/marathidiv.css" />
+        <script src="./Imageajax.js"></script>
+        <style>
+    .slider-btn {
+      position: absolute;
+      top: 40%;
+      z-index: 10;
+      background-color: rgba(0, 0, 0, 0.6);
+      border: none;
+      color: white;
+      font-size: 15px;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 100%;
+      transition: background 0.3s ease;
+    }
+
+    #scroll-left {
+      left: -30px;
+    }
+
+    #scroll-right {
+      right: -30px;
+    }
+
+    .slider-btn:hover {
+      background-color: gray;
+      opacity: 0.9;
+    }
+
+    /* Ensure horizontal scroll for moviediv */
+    .moviediv {
+      overflow-x: auto;
+      white-space: nowrap;
+      scroll-behavior: smooth;
+    }
+
+    .moviediv .mar {
+      display: inline-block;
+      vertical-align: top;
+      margin-right: 16px;
+    }
+  </style>
+    </head>
+
+    <body>
+        <div class="marathidiv" id="m1">
+            <h3>Sports Special Highlightes</h3>
+
+            <div style="position: relative; width: 100%;">
+                <button id="scroll-left" class="slider-btn">&#10094;</button>
+                <button id="scroll-right" class="slider-btn">&#10095;</button>
+
+                <div class="moviediv" id="moviediv">
+                    <% if (sports.length > 0) { %>
+                    <% sports.forEach((l) => { %>
+                    <div class="mar">
+                        <img src="<%= l.poster_url %>">
+
+                        <div class="button-row"
+                            style="display: flex; justify-content: center; flex-wrap: wrap; margin-top: 5px;">
+                            <a href="<%= l.trailer_url %>" target="_blank"
+                                id="first1">
+                                <span
+                                    style="color:#FFD700; font-size:24px;">▶</span>
+                            </a>
+                            <a href="#">
+                                <button
+                                    onclick="addToWatchlist('<%= l.movie_id %>')">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </a>
+                            <span class="added-msg"
+                                style="display:none; color:green;">Added
+                                ✔️</span>
+                            <a href="<%= l.full_movie_url %>" target="_blank">
+                                <button id="watch1">
+                                    <i class="fas fa-play-circle"></i> Play
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <% }); %>
+                    <% } else { %>
+                    <!-- <h5>No Marathi movies currently</h5> -->
+                    <% } %>
+                </div>
+            </div>
+        </div>
+
+        <script>
+    const scrollContainer = document.getElementById("moviediv");
+    const scrollLeftBtn = document.getElementById("scroll-left");
+    const scrollRightBtn = document.getElementById("scroll-right");
+
+    scrollLeftBtn.onclick = () => {
+      scrollContainer.scrollBy({ left: -300, behavior: "smooth" });
+    };
+
+    scrollRightBtn.onclick = () => {
+      scrollContainer.scrollBy({ left: 300, behavior: "smooth" });
+    };
+  </script>
+    </body>
+
+</html>

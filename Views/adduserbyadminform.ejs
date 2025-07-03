@@ -31,23 +31,56 @@
       color:  #ff5900;
     }
 
-    .user-form-container input,
-    .user-form-container select {
-      width: 100%;
-      padding: 12px;
-      margin: 12px 0;
-      border: 1px solid black;
-      border-radius: 8px;
-      font-size: 14px;
-      transition: 0.3s ease;
-    }
 
-    .user-form-container input:focus,
-    .user-form-container select:focus {
-      border-color: #ff9800;
-      outline: none;
-    }
+  .user-form-container input,
+  .user-form-container select {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid #444;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #121212;
+    color: #eee;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
 
+  .user-form-container input:focus,
+  .user-form-container select:focus {
+    border-color: #0f91ff;
+    background-color: #1e1e1e;
+    outline: none;
+  }
+
+  .user-form-container input::placeholder {
+    color: #aaa;
+  }
+
+  .user-form-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #0f91ff;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+
+  .user-form-container button:hover {
+    background-color: #0d75d8;
+    transform: scale(1.02);
+  }
+
+  .user-form-container h4 {
+    text-align: center;
+    color: #44ff88;
+    font-weight: 500;
+    margin-top: 12px;
+  }
+</style>
     .user-form-container button {
       width: 100%;
       padding: 12px;
@@ -61,16 +94,6 @@
       transition: background 0.3s ease, transform 0.2s ease;
     }
 
-    .user-form-container button:hover {
-      background-color: #e08900;
-      transform: scale(1.02);
-    }
-    .user-form-container h4
-    {
-      text-align: center;
-      color: #ff9800;
-    }
-  </style>
 </head>
 <body>
 
@@ -81,7 +104,7 @@
       <input type="email" name="email" placeholder="Enter Email" required>
       <input type="password" name="password" placeholder="Enter Password" required>
       <input type="role" name="role" value="User" readonly>
-      <button type="submit">Add User</button>
+      <button type="submit" style=" background: linear-gradient(to right, #2600ff, #ff5722);">Add User</button>
 
       <h4><%=msg%></h4>
     </form>

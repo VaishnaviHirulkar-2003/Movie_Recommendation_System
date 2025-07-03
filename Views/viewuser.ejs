@@ -20,6 +20,10 @@
       background: #1e1e1e;
       border-radius: 10px;
       border: 1px solid #333;
+<<<<<<< HEAD
+      margin-top: 3%;
+      /* border: 1px solid white; */
+=======
       margin-top: 2%;
       padding: 10px;
     }
@@ -29,6 +33,7 @@
       align-items: center;
       gap: 10px;
       margin-bottom: 20px;
+>>>>>>> master
     }
 
     .search-form input[type="text"] {
@@ -163,10 +168,25 @@
       font-weight: 700;
       cursor: default;
     }
+    .moviecon input {
+      width: 80%;
+      margin-left: 10%;
+      height: 30px;
+      border: 1px solid gray;
+      border-radius: 8px;
+      color: white;
+      background-color: black;
+      font-weight: 600;
+      margin-bottom: 2px;
+      margin-top: 5px;
+    }
   </style>
 </head>
 <body>
   <div class="moviecon">
+<<<<<<< HEAD
+    <input type="text" name="username" value="" placeholder="Enter the Seach name" oninput="getsearchuser(this.value)">
+=======
 
     <!-- Search Form -->
     <form class="search-form" method="GET" action="/admin/usersearch">
@@ -182,6 +202,7 @@
     </form>
 
     <!-- User Table -->
+>>>>>>> master
     <table>
       <thead>
         <tr>
@@ -190,7 +211,7 @@
           <th>Email</th>
           <th>View</th>
           <th>Delete</th>
-          <th>Update</th>
+          <!-- <th>Update</th> -->
         </tr>
       </thead>
       <tbody>
@@ -212,6 +233,8 @@
                   </button>
                 </a>
               </td>
+<<<<<<< HEAD
+=======
               <td>
                 <a href="/admin/edituser?id=<%= u.user_id %>">
                   <button>
@@ -219,6 +242,7 @@
                   </button>
                 </a>
               </td>
+>>>>>>> master
             </tr>
           <% }); %>
         <% } else { %>
@@ -235,6 +259,16 @@
         <a href="?page=<%= currentPage - 1 %>">&laquo;</a>
       <% } %>
 
+<<<<<<< HEAD
+  <% for(let i = 1; i <= totalPages; i++) { %>
+    <a href="?page=<%= i %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+  <% } %>
+
+  <% if (currentPage < totalPages) { %>
+    <a href="?page=<%= currentPage + 1 %>">&raquo;</a>
+  <% } %>
+</div>
+=======
       <% for (let i = 1; i <= totalPages; i++) { %>
         <a
           href="?page=<%= i %>"
@@ -247,6 +281,30 @@
         <a href="?page=<%= currentPage + 1 %>">&raquo;</a>
       <% } %>
     </div>
+>>>>>>> master
   </div>
+
+  <script>
+    function getsearchuser(value) {  // not getsearcuser
+  const tbody = document.querySelector("tbody");
+  const pagination = document.querySelector(".pagination");
+
+  if (value.trim() === "") {
+    location.reload(); // Reload the original page with full data
+    return;
+  }
+
+  fetch(`/admin/searchuser?query=${encodeURIComponent(value)}`)
+    .then(res => res.text())
+    .then(html => {
+      tbody.innerHTML = html;
+      pagination.style.display = "none";
+    })
+    .catch(err => {
+      console.error("Search error:", err);
+    });
+}
+
+  </script>
 </body>
 </html>

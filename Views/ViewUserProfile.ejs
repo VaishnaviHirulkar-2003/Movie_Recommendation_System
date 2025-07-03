@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Info</title>
+  <style>
+  * {
+  box-sizing: border-box;
+    }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-image: url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.99); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  padding: 30px 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+h4 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #ffffff;
+  font-size: 24px;
+}
+
+input {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  backdrop-filter: blur(4px);
+}
+
+input::placeholder {
+  color: #eaeaea;
+}
+
+input:read-only {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.btn.logout {
+  background: linear-gradient(45deg, #868f96, #596164);
+}
+
+.btn.delete {
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  animation: fadeIn 0.3s ease-in-out;
+  text-align: center;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.modal-content .btn.update {
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+    width: 90%;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  animation: fadeIn 0.3s ease-in-out;
+  text-align: center;
+}
+
+.modal-content h3 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  color: black;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  color: #888;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <form method="POST" action="#">
+      <h4>Welcome <%= udata.username %></h4>
+        <input type="hidden" value="<%=udata.user_id%>">
+      <input type="text" value="<%= udata.username %>" readonly>
+      <input type="text" value="<%= udata.email %>" readonly>
+      <input type="text" value="<%= udata.created_at %>" readonly>
+      <input type="text" value="<%= udata.updated_at %>" readonly>
+
+      <div class="button-group">
+     <button type="button" class="btn update" onclick="openModal('updateModal')">Update</button>
+    <button type="submit" formaction="/logout" class="btn logout">Logout</button>
+    <button type="button" class="btn delete" onclick="openModal('deleteModal')">Delete</button>
+
+      </div>
+
+      <h5><%=msg%></h5>
+    </form>
+  </div>
+  <!-- ==== Update Modal ==== -->
+<<!-- ==== Update Modal ==== -->
+<div id="updateModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('updateModal')">&times;</span>
+    <h3>Update Your Details</h3>
+    <form action="/user/updateprofile" method="POST">
+        <input type="hidden" name="id" value="<%=udata.user_id%>">
+      <input type="text" name="username" value="<%= udata.username %>" required>
+      <input type="email" name="email" value="<%= udata.email %>" required>
+      <input type="password" name="oldpass" value="" placeholder="Enter your Old Passowrd" required>
+      <input type="password" name="newpass" value="" placeholder="Enter new Passowrd" required>
+      <button type="submit" class="btn update">Save Changes</button>
+    </form>
+  </div>
+</div>
+
+
+<!-- ==== Delete Confirmation Modal ==== -->
+<div id="deleteModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('deleteModal')">&times;</span>
+    <h3>Are you sure you want to delete your account?</h3>
+    <form action="/user/deleteaccount" method="POST">
+        <input type="hidden" name="id" value="<%=udata.user_id%>">
+      <button type="submit" class="btn delete">Yes, Delete</button>
+      <button type="button" class="btn logout" onclick="closeModal('deleteModal')">Cancel</button>
+    </form>
+  </div>
+</div>
+    <script>
+  function openModal(id) {
+    document.getElementById(id).style.display = 'flex';
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+
+  window.onclick = function(event) {
+    const modal = document.getElementById("updateModal");
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+</script>
+
+
+</body>
+</html>

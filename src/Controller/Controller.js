@@ -76,23 +76,48 @@ exports.savereguser=(req,res)=>
     } 
     getreg();
 }
-exports.userdashboard=(req,res)=>
-{
-    req.session.regusername=req.query.u;
-    // console.log(req.session.regusername);
-    async function getdataforteaser() {
-        try
-        {
-            let r=await model.gettodata();
-            let latestr=await model.getlatest();
-            let marathimovie=await model.getmarathimovie();
-            // console.log(latestr);
-            res.render("userdashboard",{topdata:r,latest:latestr,msg:"",module:"home",marathi:marathimovie}); //before login
-        }
-        catch(err)
-        {
-            res.render("userdashboard",{topdata:{poster_url :"./Image/sairat.png",trailer_url:"linkrel",Title:"Gum Hain Kisi Ke Pyar Main"},latest:[],msg:"",module:"home",marathi:[]} );
-        }   
+exports.userdashboard = (req, res) => {
+  req.session.regusername = req.query.u;
+   let user=req.session.username || req.session.u;
+   console.log(user);
+  async function getdataforteaser() {
+    try {
+      const topdata = await model.gettodata();
+      const latest = await model.getlatest();
+      const marathi = await model.getmarathimovie();
+      const action = await model.getactionmovies();
+      const rec=await model.recommendation(user);
+      const sports=await  model.getsports();
+      res.render("userdashboard", {
+        topdata,
+        latest,
+        msg: "",
+        module: "home",
+        marathi,
+        action,
+        rec,
+        sports,
+        error: null
+      });
+    } catch (err) {
+      console.error(err);
+      res.render("userdashboard", {
+        topdata: {
+          poster_url: "./Image/sairat.png",
+          trailer_url: "linkrel",
+          Title: "Gum Hain Kisi Ke Pyar Main"
+        },
+        latest: [],
+        msg: "Something went wrong",
+        module: "home",
+        marathi: [],
+        action: [],
+        rec:[],
+        sports:[],
+        error: "Error fetching movie data"
+      });
     }
-    getdataforteaser();
-}
+  }
+
+  getdataforteaser();
+};

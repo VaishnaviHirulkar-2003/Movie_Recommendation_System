@@ -36,18 +36,31 @@
               class="fa-solid fa-house"></i>&nbsp;&nbsp;Home</a>
           <a href="#" onclick="getsearchbar()"><i
               class="fa-solid fa-magnifying-glass"></i>&nbsp;&nbsp;Search</a>
-          <a href="#" onclick="getdata('drama')"><i class="fa-solid fa-tv"></i>&nbsp;&nbsp;Shows</a>
+          <a href="#" onclick="getdata('drama')"><i
+              class="fa-solid fa-tv"></i>&nbsp;&nbsp;Shows</a>
           <!-- <a href="#"><i
               class="fa-solid fa-clapperboard"></i>&nbsp;&nbsp;Movie</a> -->
+<<<<<<< HEAD
+          <a href="#m1"><i class="fa-solid fa-trophy"></i>&nbsp;&nbsp;Sports</a>
+          <a href="#"><i class="fa-solid fa-video"></i>&nbsp;&nbsp;Sparks</a>
+=======
       <a href="#"><i class="fa-solid fa-trophy"></i>&nbsp;&nbsp;Sports</a>
       <a href="#"><i class="fa-solid fa-video"></i>&nbsp;&nbsp;Sparks</a>
+>>>>>>> master
           <a href="#"><i
               class="fa-solid fa-puzzle-piece"></i>&nbsp;&nbsp;Section</a>
           <a href="/user/savedmovies"><i
               class="fa-solid fa-bookmark"></i>&nbsp;&nbsp;Saved</a>
+<<<<<<< HEAD
+          <a href="/user/userProfile"><i
+              class="fa-solid fa-user"></i>&nbsp;&nbsp;Profile</a>
+        </div>
+      </div>
+=======
       <a href="#"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;Profile</a>
     </div>
   </div>
+>>>>>>> master
       <div class="search" id="s"></div>
   <div class="vediodiv">
     <!-- Your video or main content -->
@@ -84,8 +97,14 @@
     </div>
   </div>
 
+<<<<<<< HEAD
+      <% if (module==="home" ) { %>
+      <div class="latestrelease" id="latest">
+        <!--after search we have to use this-->
+=======
   <% if (module==="home" ) { %>
       <div class="latestrelease" id="latest">  <!--after search we have to use this-->
+>>>>>>> master
         <h3 id="h1">Latest Releases</h3>
         <div class="latestmovie" id="lmovies">
         <% if (latest.length> 0) { %>
@@ -112,91 +131,168 @@
   <h3>Our Special Movies ❤️</h3>
   <div class="slider-track" id="sliderTrack">
             <div class="slide-item">
-                <img
+              <img
                 src="https://upload.wikimedia.org/wikipedia/en/9/95/Kesari_Chapter_2.jpg"
-                alt="Movie 1" onclick="getdesc('https://upload.wikimedia.org/wikipedia/en/9/95/Kesari_Chapter_2.jpg', 'Kesari Chapter-2','https://www.youtube.com/watch?v=r-7g08INMSI')"><button class="play-icon">▶</button></div>
+                alt="Movie 1"
+                onclick="getdesc('https://upload.wikimedia.org/wikipedia/en/9/95/Kesari_Chapter_2.jpg', 'Kesari Chapter-2','https://www.youtube.com/watch?v=r-7g08INMSI')"><button
+                class="play-icon">▶</button></div>
             <div class="slide-item">
-                <img
+              <img
                 src="https://m.media-amazon.com/images/M/MV5BMTYzOTE2NjkxN15BMl5BanBnXkFtZTgwMDgzMTg0MzE@._V1_.jpg"
-                alt="Movie 2" onclick="getdesc('https://m.media-amazon.com/images/M/MV5BMTYzOTE2NjkxN15BMl5BanBnXkFtZTgwMDgzMTg0MzE@._V1_.jpg','Pk','https://www.youtube.com/watch?v=0iNw-oKBFBc')"><button class="play-icon">▶</button></div>
+                alt="Movie 2"
+                onclick="getdesc('https://m.media-amazon.com/images/M/MV5BMTYzOTE2NjkxN15BMl5BanBnXkFtZTgwMDgzMTg0MzE@._V1_.jpg','Pk','https://www.youtube.com/watch?v=0iNw-oKBFBc')"><button
+                class="play-icon">▶</button></div>
             <div class="slide-item">
-                <img 
+              <img
                 src="http://upload.wikimedia.org/wikipedia/en/3/32/Dil_Bechara_film_poster.jpg"
-                alt="Movie 3" onclick="getdesc('http://upload.wikimedia.org/wikipedia/en/3/32/Dil_Bechara_film_poster.jpg','Dil Bechara','https://www.youtube.com/watch?v=V5y7fSSWr4Y')"><button class="play-icon">▶</button></div>
+                alt="Movie 3"
+                onclick="getdesc('http://upload.wikimedia.org/wikipedia/en/3/32/Dil_Bechara_film_poster.jpg','Dil Bechara','https://www.youtube.com/watch?v=V5y7fSSWr4Y')"><button
+                class="play-icon">▶</button></div>
             <div class="slide-item">
-                <img
+              <img
                 src="https://4.bp.blogspot.com/-xe834VfFe5I/V8A6BhHSgyI/AAAAAAAAJdY/Fj5cJkcmuHUTOizFlmEjcNtQmNZTmbRmwCLcB/s1600/Hum%2BSaath%2BSaath%2BHain%2BDialogues%2BPoster.jpg"
-                alt="Movie 4" onclick="getdesc('https://4.bp.blogspot.com/-xe834VfFe5I/V8A6BhHSgyI/AAAAAAAAJdY/Fj5cJkcmuHUTOizFlmEjcNtQmNZTmbRmwCLcB/s1600/Hum%2BSaath%2BSaath%2BHain%2BDialogues%2BPoster.jpg','Hum Saath-Saath Hain','https://www.youtube.com/watch?v=Rgi_x7zq9IM&list=PL0CaUqi81mPnhBMFz2SuVWK3TfL_5Bckw')"><button class="play-icon">▶</button></div>
+                alt="Movie 4"
+                onclick="getdesc('https://4.bp.blogspot.com/-xe834VfFe5I/V8A6BhHSgyI/AAAAAAAAJdY/Fj5cJkcmuHUTOizFlmEjcNtQmNZTmbRmwCLcB/s1600/Hum%2BSaath%2BSaath%2BHain%2BDialogues%2BPoster.jpg','Hum Saath-Saath Hain','https://www.youtube.com/watch?v=Rgi_x7zq9IM&list=PL0CaUqi81mPnhBMFz2SuVWK3TfL_5Bckw')"><button
+                class="play-icon">▶</button></div>
             <div class="slide-item">
-                <img
+              <img
                 src="https://www.itl.cat/pngfile/big/91-916153_vivah-movie-poster.jpg"
-                alt="Movie 5" onclick="getdesc('https://www.itl.cat/pngfile/big/91-916153_vivah-movie-poster.jpg','Vivah','https://www.youtube.com/watch?v=JKsmzHl7dUw&t=6s')"><button class="play-icon">▶</button></div>
+                alt="Movie 5"
+                onclick="getdesc('https://www.itl.cat/pngfile/big/91-916153_vivah-movie-poster.jpg','Vivah','https://www.youtube.com/watch?v=JKsmzHl7dUw&t=6s')"><button
+                class="play-icon">▶</button></div>
             <div class="slide-item">
-                <img
+              <img
                 src="https://4.bp.blogspot.com/-py2z4TFWUMQ/Wdy_BpR1MHI/AAAAAAAAl34/VTNMr7EPxccHivdDccx2LkmVPxyC3P6tgCEwYBhgL/s1600/Golmaal-Again-First-Look-Poster-6.jpg"
-                alt="Movie 1" onclick="getdesc('https://4.bp.blogspot.com/-py2z4TFWUMQ/Wdy_BpR1MHI/AAAAAAAAl34/VTNMr7EPxccHivdDccx2LkmVPxyC3P6tgCEwYBhgL/s1600/Golmaal-Again-First-Look-Poster-6.jpg','Golmaal Again','https://www.youtube.com/watch?v=0v4Hbf0nl6E')"><button class="play-icon">▶</button></div>
+                alt="Movie 1"
+                onclick="getdesc('https://4.bp.blogspot.com/-py2z4TFWUMQ/Wdy_BpR1MHI/AAAAAAAAl34/VTNMr7EPxccHivdDccx2LkmVPxyC3P6tgCEwYBhgL/s1600/Golmaal-Again-First-Look-Poster-6.jpg','Golmaal Again','https://www.youtube.com/watch?v=0v4Hbf0nl6E')"><button
+                class="play-icon">▶</button></div>
             <div class="slide-item">
-                <img
+              <img
                 src="https://stat2.bollywoodhungama.in/wp-content/uploads/2020/05/34-2-4.jpg"
-                alt="Movie 2" onclick="getdesc('https://stat2.bollywoodhungama.in/wp-content/uploads/2020/05/34-2-4.jpg','Ek Vivah Aisa bhii','https://www.youtube.com/watch?v=WXsR_8YKlyM&list=PL07CAB929B077D241')"><button class="play-icon">▶</button></div>
+                alt="Movie 2"
+                onclick="getdesc('https://stat2.bollywoodhungama.in/wp-content/uploads/2020/05/34-2-4.jpg','Ek Vivah Aisa bhii','https://www.youtube.com/watch?v=WXsR_8YKlyM&list=PL07CAB929B077D241')"><button
+                class="play-icon">▶</button></div>
             <div class="slide-item">
-                <img
+              <img
                 src="https://i.pinimg.com/originals/75/44/a8/7544a8c400cd94c30fdb8467f055200f.jpg"
-                alt="Movie 3" onclick="getdesc('https://i.pinimg.com/originals/75/44/a8/7544a8c400cd94c30fdb8467f055200f.jpg','Hero No 1','https://www.youtube.com/watch?v=ixzh4Dcg8KU')"><button class="play-icon">▶</button></div>
+                alt="Movie 3"
+                onclick="getdesc('https://i.pinimg.com/originals/75/44/a8/7544a8c400cd94c30fdb8467f055200f.jpg','Hero No 1','https://www.youtube.com/watch?v=ixzh4Dcg8KU')"><button
+                class="play-icon">▶</button></div>
             <div class="slide-item">
-                <img
+              <img
                 src="https://static.india.com/wp-content/uploads/2022/11/315727830_118751787703550_4147354325212302800_n.jpg"
-                alt="Movie 4" onclick="getdesc('https://static.india.com/wp-content/uploads/2022/11/315727830_118751787703550_4147354325212302800_n.jpg','Govinda naam mera','https://www.youtube.com/watch?v=JD6ULW9--aw')"><button class="play-icon">▶</button></div>
+                alt="Movie 4"
+                onclick="getdesc('https://static.india.com/wp-content/uploads/2022/11/315727830_118751787703550_4147354325212302800_n.jpg','Govinda naam mera','https://www.youtube.com/watch?v=JD6ULW9--aw')"><button
+                class="play-icon">▶</button></div>
             <div class="slide-item">
-                <img
+              <img
                 src="http://upload.wikimedia.org/wikipedia/en/thumb/e/e5/Atrangi_Re_film_poster.jpg/220px-Atrangi_Re_film_poster.jpg"
-                alt="Movie 5" onclick="getdesc('http://upload.wikimedia.org/wikipedia/en/thumb/e/e5/Atrangi_Re_film_poster.jpg/220px-Atrangi_Re_film_poster.jpg','Atrangi Re','https://archive.org/details/atrangi-re-2021-dual-audio')"><button class="play-icon">▶</button></div>
+                alt="Movie 5"
+                onclick="getdesc('http://upload.wikimedia.org/wikipedia/en/thumb/e/e5/Atrangi_Re_film_poster.jpg/220px-Atrangi_Re_film_poster.jpg','Atrangi Re','https://archive.org/details/atrangi-re-2021-dual-audio')"><button
+                class="play-icon">▶</button></div>
 
             <div class="slide-item">
-                <img
+              <img
                 src="https://image.tmdb.org/t/p/original/mVnBibFJsVP5kQWvTjrx15qi0Na.jpg"
-                alt="Movie 1" onclick="getdesc('https://image.tmdb.org/t/p/original/mVnBibFJsVP5kQWvTjrx15qi0Na.jpg','GoobLuck Jerry','https://archive.org/details/good-luck-jerry-2022_202212')"><button class="play-icon">▶</button></div>
+                alt="Movie 1"
+                onclick="getdesc('https://image.tmdb.org/t/p/original/mVnBibFJsVP5kQWvTjrx15qi0Na.jpg','GoobLuck Jerry','https://archive.org/details/good-luck-jerry-2022_202212')"><button
+                class="play-icon">▶</button></div>
             <div class="slide-item">
-                <img
+              <img
                 src="https://c8.alamy.com/comp/2C3Y1J8/gunjan-saxena-the-kargil-girl-us-poster-janhvi-kapoor-as-gunjan-saxena-2020-netflix-courtesy-everett-collection-2C3Y1J8.jpg"
-                alt="Movie 2" onclick="getdesc('https://c8.alamy.com/comp/2C3Y1J8/gunjan-saxena-the-kargil-girl-us-poster-janhvi-kapoor-as-gunjan-saxena-2020-netflix-courtesy-everett-collection-2C3Y1J8.jpg','gunjan Saxena','https://www.youtube.com/watch?v=rtGIq9Xjnrw')"><button class="play-icon">▶</button></div>
+                alt="Movie 2"
+                onclick="getdesc('https://c8.alamy.com/comp/2C3Y1J8/gunjan-saxena-the-kargil-girl-us-poster-janhvi-kapoor-as-gunjan-saxena-2020-netflix-courtesy-everett-collection-2C3Y1J8.jpg','gunjan Saxena','https://www.youtube.com/watch?v=rtGIq9Xjnrw')"><button
+                class="play-icon">▶</button></div>
             <div class="slide-item">
-                <img
+              <img
                 src="https://www.filmtv.it/imgbank/GALLERYXL/R201707/neerja09.jpg"
-                alt="Movie 3" onclick="getdesc('https://www.filmtv.it/imgbank/GALLERYXL/R201707/neerja09.jpg','Neerja','https://www.youtube.com/watch?v=0nqGUetu3r0')"><button class="play-icon">▶</button></div>
+                alt="Movie 3"
+                onclick="getdesc('https://www.filmtv.it/imgbank/GALLERYXL/R201707/neerja09.jpg','Neerja','https://www.youtube.com/watch?v=0nqGUetu3r0')"><button
+                class="play-icon">▶</button></div>
             <div class="slide-item">
-                <img
+              <img
                 src="https://media5.bollywoodhungama.in/wp-content/uploads/2021/09/Shiddat-5.jpeg"
-                alt="Movie 4" onclick="getdesc('https://media5.bollywoodhungama.in/wp-content/uploads/2021/09/Shiddat-5.jpeg','Shiddat','https://archive.org/details/shiddat-2021-hindi.-untouched.-web.-dl.-720p.-avcx-264.-aac.-superhit-bollywood-_20240913')"><button class="play-icon">▶</button></div>
+                alt="Movie 4"
+                onclick="getdesc('https://media5.bollywoodhungama.in/wp-content/uploads/2021/09/Shiddat-5.jpeg','Shiddat','https://archive.org/details/shiddat-2021-hindi.-untouched.-web.-dl.-720p.-avcx-264.-aac.-superhit-bollywood-_20240913')"><button
+                class="play-icon">▶</button></div>
             <div class="slide-item">
-                <img
+              <img
                 src="https://m.media-amazon.com/images/M/MV5BZTM4ODJlZmMtZGVmMS00ZDFjLWFkYzgtYjk3NDNhZDg3NjNlXkEyXkFqcGdeQXVyNzkxOTEyMjI@._V1_.jpg"
-                alt="Movie 5" onclick="getdesc('https://m.media-amazon.com/images/M/MV5BZTM4ODJlZmMtZGVmMS00ZDFjLWFkYzgtYjk3NDNhZDg3NjNlXkEyXkFqcGdeQXVyNzkxOTEyMjI@._V1_.jpg','Super 30','https://archive.org/details/super-30-2019-hindi')"><button class="play-icon">▶</button></div>
+                alt="Movie 5"
+                onclick="getdesc('https://m.media-amazon.com/images/M/MV5BZTM4ODJlZmMtZGVmMS00ZDFjLWFkYzgtYjk3NDNhZDg3NjNlXkEyXkFqcGdeQXVyNzkxOTEyMjI@._V1_.jpg','Super 30','https://archive.org/details/super-30-2019-hindi')"><button
+                class="play-icon">▶</button></div>
           </div>
         </div>
       </div>
-      
 
       <!-- content the from input img -->
-<div class="imgplay" style="display: none;" id="imgplay">
-  <div class="img" id="iadd">
-      <!-- add by ajax -->
-       <img src="" id="imgt">
-  </div>
-  <div class="desc">
-    <h4 style="margin: 10px 0 5px;" id="moviename"></h4>
-    <a href="" id="movie"><button>View Movie</button></a>
-    <!-- <a href="#" id="addwatchlist"><button>+ Add</button></a> -->
+      <div class="imgplay" style="display: none;" id="imgplay">
+        <div class="img" id="iadd">
+          <!-- add by ajax -->
+          <img src id="imgt">
+        </div>
+        <div class="desc">
+          <h4 style="margin: 10px 0 5px;" id="moviename"></h4>
+          <a href id="movie"><button>View Movie</button></a>
+          <!-- <a href="#" id="addwatchlist"><button>+ Add</button></a> -->
 
-  </div>
-</div>
-    <!--formarathi movies-->
-    <div class="marathisection" id="marathi">
-    <%-include("marathidiv.ejs")%>
+        </div>
+      </div>
+      <!--formarathi movies-->
+      <div class="marathisection" id="marathi">
+        <%-include("marathidiv.ejs")%>
+      </div>
+      <% if (action && action.length > 0) { %>
+  <div class="slider-container" id="slider1">
+    <h3>Action Movies</h3>
+    <div class="slider-track" id="sliderTrack2">
+      <% action.forEach((item) => { %>
+        <div class="slide-item">
+          <img
+            src="<%= item.poster_url %>"
+            alt="<%= item.title %>"
+            onclick="getdesc('<%= item.poster_url %>', '<%= item.title %>', '<%= item.full_movie_url %>')">
+          <button class="play-icon" style="color: white;" onclick="addToWatchlist('<%= item.movie_id %>')">+Add</button>
+           <span class="added-msg" style="display:none; color:green;">Added
+              ✔️</span>
+        </div>
+      <% }); %>
     </div>
+  </div>
+<% } else { %>
+  <!-- <p style="color:white; text-align:center;">No action movies found.</p> -->
+<% } %>
 
+<<<<<<< HEAD
+      <% if (action && action.length > 0) { %>
+  <div class="slider-container" id="slider1">
+    <h3>Our Recommnadation For You</h3>
+    <div class="slider-track" id="sliderTrack3">
+      <%rec.forEach((item) => { %>
+        <div class="slide-item">
+          <img
+            src="<%= item.poster_url %>"
+            alt="<%= item.title %>"
+            onclick="getdesc('<%= item.poster_url %>', '<%= item.title %>', '<%= item.full_movie_url %>')">
+          <button class="play-icon" style="color: white;" onclick="addToWatchlist('<%= item.movie_id %>')">+Add</button>
+           <span class="added-msg" style="display:none; color:green;">Added
+              ✔️</span>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+<% } else { %>
+  <!-- <p style="color:white; text-align:center;">No action movies found.</p> -->
+<% } %>
+      <div class="marathisection m1" id="marathi">
+        <%-include("sports.ejs")%>
+      </div>
+      <!---recommnadation div-->
+    </div>
+=======
     <!---recommnadation div-->
 </div>
+>>>>>>> master
     <% } else if(module==="saved" ) { %>
 
   <%if(latest.length>0)
@@ -216,10 +312,16 @@
             <h5>Movie Name: <%=item.title%>
             </h5>
 
+<<<<<<< HEAD
+          <div class="button">
+            <a href="/user/removewatchlist?id=<%=item.movie_id%>&uid=<%=item.watchlist_id%>"><button>Remove</button></a>
+            <a href="#"><button>Trailer</button></a>
+=======
             <div class="button">
               <a href="#"><button>Remove</button></a>
               <a href="#"><button>Trailer</button></a>
             </div>
+>>>>>>> master
           </div>
           <% }); %>
       </div>
@@ -229,6 +331,56 @@
       <% }%>
         <% }%>
 
+<<<<<<< HEAD
+    <!--code for the some common movies-->
+    <script src="/Js/Userdashboard.js"></script>
+    <script src="./Imageajax.js"></script>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById("searchInput");
+  const lmovies = document.getElementById("lmovies");
+  const latest = document.getElementById("latest");
+  const slider = document.getElementById("slider");
+  const marathi = document.getElementById("marathi");
+
+  // Store original content before any search
+  const originalLmovies = lmovies.innerHTML;
+
+  searchInput.addEventListener("input", function () {
+    const str = this.value.trim();
+
+    if (str === "") {
+      // Restore default sections
+      latest.style.display = "flex";
+      latest.style.flexDirection = "column";
+      latest.style.height = "auto";
+      latest.style.minHeight = "0";
+      latest.style.marginBottom = "20px";
+
+      lmovies.innerHTML = originalLmovies;
+      lmovies.style.display = "flex";
+      lmovies.style.flexWrap = "wrap";
+      lmovies.style.gap = "2%";
+
+      if (slider) slider.style.display = "block";
+      if (marathi) marathi.style.display = "block";
+    } else {
+      fetch(`/user/search?name=${encodeURIComponent(str)}`)
+        .then((res) => res.text())
+        .then((html) => {
+          lmovies.innerHTML = html;
+          latest.style.display = "flex";
+          if (slider) slider.style.display = "none";
+          if (marathi) marathi.style.display = "none";
+        });
+    }
+  });
+});
+</script>
+
+  </body>
+</html>
+=======
           <!--code for the some common movies-->
       <script src="/Js/Userdashboard.js"></script>
       <script src="./Imageajax.js"></script>
@@ -268,3 +420,4 @@ function addToWatchlist(movieId) {
 </body>
 </html>
 >>>>>>> Stashed changes
+>>>>>>> master
